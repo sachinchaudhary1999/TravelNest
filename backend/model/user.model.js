@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
   },
   languages: [{ type: String }],
   role: { type: String, enum: ["user", "admin"], default: "user" },
+  isBlocked: { type: Boolean, default: false },
   listing: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],
   booking: [{ type: mongoose.Schema.Types.ObjectId, ref: "Booking" }],
   wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }],

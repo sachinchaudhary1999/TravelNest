@@ -21,20 +21,11 @@ import Messages from './pages/Messages'
 import Chat from './pages/Chat'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
-import AdminPanel from './pages/AdminPanel'
 
 function PrivateRoute({ children }) {
   const { userData, userLoading } = useContext(userDataContext)
   if (userLoading) return <div className="flex items-center justify-center h-screen text-xl">Loading...</div>
   return userData ? children : <Navigate to="/login" />
-}
-
-function AdminRoute({ children }) {
-  const { userData, userLoading } = useContext(userDataContext)
-  if (userLoading) return <div className="flex items-center justify-center h-screen text-xl">Loading...</div>
-  if (!userData) return <Navigate to="/login" />
-  if (userData.role !== "admin") return <Navigate to="/" />
-  return children
 }
 
 function App() {
@@ -60,8 +51,6 @@ function App() {
         <Route path='/wishlist' element={<PrivateRoute><Wishlist /></PrivateRoute>} />
         <Route path='/messages' element={<PrivateRoute><Messages /></PrivateRoute>} />
         <Route path='/chat/:bookingId' element={<PrivateRoute><Chat /></PrivateRoute>} />
-
-        <Route path='/admin' element={<AdminRoute><AdminPanel /></AdminRoute>} />
       </Routes>
     </>
   )

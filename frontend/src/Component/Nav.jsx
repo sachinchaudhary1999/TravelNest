@@ -47,6 +47,7 @@ function Nav() {
   const { serverUrl } = useContext(authDataContext)
   const { listingData, setNewListData, searchData, handleSearch, handleViewCard, setSearchData } = useContext(listingDataContext)
   const navigate = useNavigate()
+  const adminUrl = import.meta.env.VITE_ADMIN_URL || "http://localhost:5174"
 
   const handleLogOut = async () => {
     try {
@@ -174,7 +175,7 @@ function Nav() {
                   <MenuItem label="Wishlist" onClick={() => { navigate("/wishlist"); setShowPopup(false); setShowSettings(false) }} dark={isDarkMenu} />
                   <MenuItem label="Messages" onClick={() => { navigate("/messages"); setShowPopup(false); setShowSettings(false) }} dark={isDarkMenu} />
                   {userData.role === "admin" && (
-                    <MenuItem label="Admin Panel" icon={<MdAdminPanelSettings />} onClick={() => { navigate("/admin"); setShowPopup(false); setShowSettings(false) }} dark={isDarkMenu} />
+                    <MenuItem label="Admin Panel" icon={<MdAdminPanelSettings />} onClick={() => { window.location.href = adminUrl; setShowPopup(false); setShowSettings(false) }} dark={isDarkMenu} />
                   )}
                   <MenuItem label="Settings" icon={<MdSettings />} onClick={() => setShowSettings(prev => !prev)} dark={isDarkMenu} />
                   {showSettings && (

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaStar, FaWifi, FaSwimmingPool, FaParking, FaSnowflake, FaTv } from 'react-icons/fa'
 import { FaArrowLeftLong } from 'react-icons/fa6'
-import { MdKitchen, MdPets, MdLocalLaundryService, MdFireplace, MdOutlineBed, MdBathtub } from 'react-icons/md'
+import { MdKitchen, MdPets, MdLocalLaundryService, MdFireplace, MdOutlineBed, MdBathtub, MdFlag } from 'react-icons/md'
 import { GiConfirmed } from 'react-icons/gi'
 import { listingDataContext } from '../Context/ListingContext'
 import { bookingDataContext } from '../Context/BookingContext'
@@ -32,6 +32,10 @@ function ViewCard() {
   const [reviewRating, setReviewRating] = useState(0)
   const [submittingReview, setSubmittingReview] = useState(false)
   const [reviews, setReviews] = useState([])
+  const [showReport, setShowReport] = useState(false)
+  const [reportReason, setReportReason] = useState("Misleading or inaccurate listing")
+  const [reportDetails, setReportDetails] = useState("")
+  const [reporting, setReporting] = useState(false)
 
   const listing = cardDetails
 
@@ -86,6 +90,25 @@ function ViewCard() {
     }
   }
 
+  const handleReport = async () => {
+    if (!userData) { navigate("/login"); return }
+    setReporting(true)
+    try {
+      await axios.post(
+        serverUrl + `/api/report/listing/${listing._id}`,
+        { reason: reportReason, details: reportDetails },
+        { withCredentials: true }
+      )
+      setShowReport(false)
+      setReportDetails("")
+      toast.success("Report submitted for admin review")
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Could not submit report")
+    } finally {
+      setReporting(false)
+    }
+  }
+
   // Find user's completed booking for this listing (for review)
   const userBooking = userData?.booking?.find(b =>
     (b.listing?._id || b.listing) === listing?._id && b.status !== "cancelled"
@@ -111,7 +134,34 @@ function ViewCard() {
           {avgRating && <span className='flex items-center gap-1'><FaStar className='text-red-400' />{avgRating} ({listing.ratingsCount} reviews)</span>}
           <span>·</span>
           <span>{listing.landMark}, {listing.city}</span>
+          {!isOwner && (
+            <button className='ml-auto flex items-center gap-1 text-red-500 hover:underline' onClick={() => setShowReport(prev => !prev)}>
+              <MdFlag /> Report
+            </button>
+          )}
         </div>
+
+        {showReport && !isOwner && (
+          <div className='mb-6 border border-red-100 bg-red-50 rounded-xl p-4'>
+            <p className='font-medium text-gray-800 mb-3'>Report this listing</p>
+            <select className='w-full border border-red-100 rounded-lg px-3 py-2 text-sm outline-none mb-3 bg-white' value={reportReason} onChange={e => setReportReason(e.target.value)}>
+              <option>Misleading or inaccurate listing</option>
+              <option>Unsafe or suspicious property</option>
+              <option>Inappropriate images or content</option>
+              <option>Spam or duplicate listing</option>
+              <option>Other</option>
+            </select>
+            <textarea className='w-full border border-red-100 rounded-lg px-3 py-2 text-sm outline-none resize-none bg-white' rows={3} placeholder='Add details for admin review' value={reportDetails} onChange={e => setReportDetails(e.target.value)} />
+            <div className='flex gap-2 mt-3'>
+              <button className='px-4 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600 disabled:opacity-60' onClick={handleReport} disabled={reporting}>
+                {reporting ? "Submitting..." : "Submit report"}
+              </button>
+              <button className='px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-50' onClick={() => setShowReport(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Images */}
         <div className='relative rounded-2xl overflow-hidden mb-8 bg-gray-100'>

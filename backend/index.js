@@ -14,6 +14,7 @@ import reviewRouter from "./routes/review.route.js"
 import adminRouter from "./routes/admin.route.js"
 import messageRouter from "./routes/message.route.js"
 import wishlistRouter from "./routes/wishlist.route.js"
+import reportRouter from "./routes/report.route.js"
 
 const port = process.env.PORT || 8000
 const app = express()
@@ -28,9 +29,17 @@ app.use(cookieParser())
 // Passport middleware
 app.use(passport.initialize())
 
+const allowedOrigins = [
+  process.env.CLIENT_URL || "http://localhost:5173",
+  process.env.ADMIN_CLIENT_URL || "http://localhost:5174",
+]
+
 // Fixed CORS - reads from env, not hardcoded
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true)
+    return callback(new Error("Not allowed by CORS"))
+  },
   credentials: true
 }))
 
@@ -43,6 +52,7 @@ app.use("/api/review", reviewRouter)
 app.use("/api/admin", adminRouter)
 app.use("/api/message", messageRouter)
 app.use("/api/wishlist", wishlistRouter)
+app.use("/api/report", reportRouter)
 
 // Health check
 app.get("/", (req, res) => res.json({ message: "TravelNest API running" }))
