@@ -27,7 +27,7 @@ function Wishlist() {
             <button className='px-6 py-3 bg-red-500 text-white rounded-xl hover:bg-red-600' onClick={() => navigate("/")}>Explore listings</button>
           </div>
         ) : (
-          <div className='flex flex-wrap gap-6 justify-center md:justify-start'>
+          <div className='flex flex-wrap gap-6 justify-center'>
             {wishlist.map(l => <Card key={l._id} listing={l} />)}
           </div>
         )}

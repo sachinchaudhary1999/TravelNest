@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs"
 import uploadOnCloudinary from "../config/cloudinary.js"
 import Listing from "../model/listing.model.js"
 
+const envAdminEmail = process.env.ADMIN_EMAIL?.toLowerCase()?.trim()
+
 export const getCurrentUser = async (req, res) => {
   try {
     const hostedListings = await Listing.find({ host: req.userId }).select("_id")
@@ -65,7 +67,16 @@ export const changePassword = async (req, res) => {
     if (newPassword.length < 6) {
       return res.status(400).json({ message: "New password must be at least 6 characters" })
     }
+
     const user = await User.findById(req.userId)
+    if (!user) {
+      return res.status(404).json({ message: "User not found" })
+    }
+
+    if (user.role === "admin" && user.email.toLowerCase() === envAdminEmail) {
+      return res.status(403).json({ message: "Admin password is managed through environment configuration and cannot be changed from the app." })
+    }
+
     const isMatch = await bcrypt.compare(currentPassword, user.password)
     if (!isMatch) {
       return res.status(400).json({ message: "Current password is incorrect" })

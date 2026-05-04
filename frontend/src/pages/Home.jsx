@@ -19,7 +19,7 @@ function Home() {
   return (
     <div className='min-h-screen bg-white'>
       <Nav />
-      <div className='pt-[220px] px-4 md:px-10 pb-10'>
+      <div className='pt-[220px] px-4 md:px-10 pb-10 max-w-[1480px] mx-auto'>
         {newListData.length === 0 ? (
           <div className='flex flex-col items-center justify-center py-20 gap-4'>
             <p className='text-2xl text-gray-400'>No listings found</p>
@@ -27,7 +27,7 @@ function Home() {
           </div>
         ) : (
           <>
-            <div className='flex flex-wrap gap-6 justify-center md:justify-start'>
+            <div className='flex flex-wrap gap-6 justify-center'>
               {newListData.map(listing => (
                 <Card key={listing._id} listing={listing} />
               ))}

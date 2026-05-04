@@ -91,7 +91,7 @@ function MyListing() {
             </button>
           </div>
         ) : (
-          <div className='flex flex-wrap gap-6 justify-center md:justify-start'>
+          <div className='flex flex-wrap gap-6 justify-center'>
             {listings.map(l => (
               <div key={l._id} className='w-[300px] max-w-[90vw]'>
                 <Card listing={l} />

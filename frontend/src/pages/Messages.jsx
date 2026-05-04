@@ -31,7 +31,7 @@ function Messages() {
   if (loading) return <div className='flex items-center justify-center h-screen'><div className='animate-spin rounded-full h-10 w-10 border-b-2 border-red-500' /></div>
 
   return (
-    <div className='min-h-screen bg-gray-50 px-4 py-8'>
+    <div className='min-h-screen bg-gray-50 px-4 md:px-10 py-8'>
       <div className='max-w-2xl mx-auto'>
         <div className='flex items-center gap-4 mb-8'>
           <button className='w-10 h-10 bg-red-500 rounded-full flex items-center justify-center' onClick={() => navigate("/")}>

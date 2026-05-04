@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { FaCalendarCheck, FaCheck, FaHome, FaTrash, FaUsers } from "react-icons/fa"
+import { FaCalendarCheck, FaCheck, FaEye, FaHome, FaTrash, FaUsers } from "react-icons/fa"
 import { MdBlock, MdDashboard, MdFlag, MdOutlinePendingActions } from "react-icons/md"
 import { IoClose, IoLogOutOutline, IoShieldCheckmark } from "react-icons/io5"
 import logo from './assets/travelnest-favicon.svg'
 
-const serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:8000"
+const serverUrl = import.meta.env.VITE_SERVER_URL || ""
 
 const tabs = [
   { key: "Dashboard", icon: <MdDashboard /> },
@@ -104,6 +104,7 @@ function AdminDashboard({ admin, onLogout }) {
   const [listings, setListings] = useState([])
   const [bookings, setBookings] = useState([])
   const [reports, setReports] = useState([])
+  const [selectedListing, setSelectedListing] = useState(null)
   const [loading, setLoading] = useState(true)
 
   const pendingListings = useMemo(() => listings.filter(l => l.status === "pending"), [listings])
@@ -298,6 +299,7 @@ function AdminDashboard({ admin, onLogout }) {
                       <p className='text-sm text-gray-500'>{listing.landMark}, {listing.city}</p>
                       <p className='text-sm text-gray-500'>By {listing.host?.name || "Unknown"} · Rs {listing.rent}/night</p>
                       <div className='flex flex-wrap gap-2 mt-3'>
+                        <ActionButton label="View" icon={<FaEye />} muted onClick={() => setSelectedListing(listing)} />
                         {listing.status !== "approved" && <ActionButton label="Approve" icon={<FaCheck />} onClick={() => updateListingStatus(listing._id, "approve")} />}
                         {listing.status !== "rejected" && <ActionButton label="Reject" icon={<IoClose />} muted onClick={() => updateListingStatus(listing._id, "reject")} />}
                         <ActionButton label="Delete" danger icon={<FaTrash />} onClick={() => deleteListing(listing._id)} />
@@ -344,6 +346,7 @@ function AdminDashboard({ admin, onLogout }) {
           )}
         </section>
       </main>
+      {selectedListing && <ListingDetailsModal listing={selectedListing} onClose={() => setSelectedListing(null)} />}
     </div>
   )
 }
@@ -369,5 +372,88 @@ function ActionButton({ label, icon, onClick, danger, muted }) {
   return <button onClick={onClick} className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold ${cls}`}>{icon}{label}</button>
 }
 function Empty({ text }) { return <p className='text-sm text-gray-400 py-4'>{text}</p> }
+
+function ListingDetailsModal({ listing, onClose }) {
+  if (!listing) return null
+
+  return (
+    <div className='fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4'>
+      <div className='w-full max-w-4xl max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden'>
+        <div className='flex items-center justify-between p-5 border-b border-gray-200'>
+          <div>
+            <h2 className='text-xl font-semibold'>{listing.title}</h2>
+            <p className='text-sm text-gray-500'>{listing.landMark}, {listing.city}</p>
+          </div>
+          <button onClick={onClose} className='text-gray-500 hover:text-gray-900 text-xl'>&times;</button>
+        </div>
+        <div className='p-5 grid gap-6 lg:grid-cols-[1.2fr,0.8fr] overflow-y-auto max-h-[calc(90vh-5.5rem)]'>
+          <div className='space-y-4'>
+            {listing.images?.length > 0 && (
+              <img src={listing.images[0]} alt={listing.title} className='w-full h-72 object-cover rounded-3xl' />
+            )}
+            <div className='flex gap-3 overflow-x-auto pb-2'>
+              {listing.images?.slice(1).map((img, idx) => (
+                <img key={idx} src={img} alt={`${listing.title} ${idx + 2}`} className='h-24 min-w-[160px] object-cover rounded-2xl flex-shrink-0' />
+              ))}
+            </div>
+            <div className='space-y-3'>
+              <div className='space-y-2'>
+              <div className='flex flex-wrap gap-3 items-center'>
+                <StatusPill status={listing.status} />
+                <span className='text-sm text-gray-500'>By {listing.host?.name || "Unknown host"}</span>
+              </div>
+              {listing.host?.email && <p className='text-sm text-gray-500'>Email: {listing.host.email}</p>}
+              <p className='text-sm text-gray-500'>{listing.address || "No address provided"}</p>
+              <p className='text-gray-700 whitespace-pre-line'>{listing.description}</p>
+            </div>
+            </div>
+          </div>
+          <div className='space-y-4'>
+            <div className='bg-gray-50 border border-gray-200 rounded-3xl p-4'>
+              <h3 className='text-sm font-semibold text-gray-700 mb-3'>Listing details</h3>
+              <DetailRow label='Category' value={listing.category} />
+              <DetailRow label='Rent' value={`Rs ${listing.rent}/night`} />
+              <DetailRow label='Guests' value={listing.maxGuests || 1} />
+              <DetailRow label='Bedrooms' value={listing.bedrooms || 1} />
+              <DetailRow label='Bathrooms' value={listing.bathrooms || 1} />
+              <DetailRow label='Ratings' value={`${listing.ratings || 0} (${listing.ratingsCount || 0})`} />
+            </div>
+            {listing.amenities?.length > 0 && (
+              <div className='bg-gray-50 border border-gray-200 rounded-3xl p-4'>
+                <h3 className='text-sm font-semibold text-gray-700 mb-3'>Amenities</h3>
+                <div className='flex flex-wrap gap-2'>
+                  {listing.amenities.map(item => (
+                    <span key={item} className='text-xs bg-white border border-gray-200 rounded-full px-3 py-1'>{item}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {listing.bookedDates?.length > 0 && (
+              <div className='bg-gray-50 border border-gray-200 rounded-3xl p-4'>
+                <h3 className='text-sm font-semibold text-gray-700 mb-3'>Booked ranges</h3>
+                <div className='space-y-2'>
+                  {listing.bookedDates.map((range, index) => (
+                    <div key={index} className='text-sm text-gray-600'>
+                      {new Date(range.checkIn).toLocaleDateString()} - {new Date(range.checkOut).toLocaleDateString()}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function DetailRow({ label, value }) {
+  return (
+    <div className='flex justify-between text-sm text-gray-600'>
+      <span>{label}</span>
+      <span className='font-semibold text-gray-900'>{value}</span>
+    </div>
+  )
+}
 
 export default App
