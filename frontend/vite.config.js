@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'https://travelnest-backend-4q1w.onrender.com',
         changeOrigin: true,
       }
     }

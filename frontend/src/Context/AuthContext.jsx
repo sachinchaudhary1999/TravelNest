@@ -2,7 +2,9 @@ import React, { createContext, useState } from 'react'
 export const authDataContext = createContext()
 
 function AuthContext({ children }) {
-  const serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:8000"
+ const serverUrl =
+    import.meta.env.VITE_SERVER_URL ||
+    "https://travelnest-backend-4q1w.onrender.com"
   const [loading, setLoading] = useState(false)
 
   return (
@@ -11,5 +13,4 @@ function AuthContext({ children }) {
     </authDataContext.Provider>
   )
 }
-
 export default AuthContext
