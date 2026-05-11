@@ -20,13 +20,29 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
-import { userDataContext } from "../Context/UserContext";
+import {
+  userDataContext,
+} from "../../Context/UserContext";
+
+import {
+  authDataContext,
+} from "../../Context/AuthContext";
+
+import axios from "axios";
+
+import logo from "../../assets/TravelNest Logo.png";
 
 function Navbar() {
+
   const navigate = useNavigate();
 
-  const { userData } =
-    useContext(userDataContext);
+  const {
+    userData,
+    setUserData,
+  } = useContext(userDataContext);
+
+  const { serverUrl } =
+    useContext(authDataContext);
 
   const [showMenu, setShowMenu] =
     useState(false);
@@ -39,47 +55,67 @@ function Navbar() {
   // THEME
 
   useEffect(() => {
+
     const storedTheme =
       localStorage.getItem("theme");
 
     if (storedTheme === "dark") {
+
       setIsDark(true);
 
       document.documentElement.classList.add(
         "dark"
       );
+
     } else {
+
       setIsDark(false);
 
       document.documentElement.classList.remove(
         "dark"
       );
     }
+
   }, []);
 
   useEffect(() => {
+
     if (isDark) {
+
       document.documentElement.classList.add(
         "dark"
       );
 
-      localStorage.setItem("theme", "dark");
+      localStorage.setItem(
+        "theme",
+        "dark"
+      );
+
     } else {
+
       document.documentElement.classList.remove(
         "dark"
       );
 
-      localStorage.setItem("theme", "light");
+      localStorage.setItem(
+        "theme",
+        "light"
+      );
     }
+
   }, [isDark]);
 
   // OUTSIDE CLICK
 
   useEffect(() => {
+
     const handler = e => {
+
       if (
         menuRef.current &&
-        !menuRef.current.contains(e.target)
+        !menuRef.current.contains(
+          e.target
+        )
       ) {
         setShowMenu(false);
       }
@@ -95,9 +131,38 @@ function Navbar() {
         "mousedown",
         handler
       );
+
   }, []);
 
+  // LOGOUT
+
+  const handleLogOut = async () => {
+
+    try {
+
+      await axios.post(
+        serverUrl + "/api/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      setUserData(null);
+
+      navigate("/");
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+    setShowMenu(false);
+  };
+
   return (
+
     <nav
       className="
         fixed
@@ -108,7 +173,7 @@ function Navbar() {
         border-gray-200
         dark:border-slate-800
         bg-white/80
-        dark:bg-slate-950/80
+        dark:bg-[#111827]/95
         backdrop-blur-xl
       "
     >
@@ -126,40 +191,31 @@ function Navbar() {
           gap-6
         "
       >
-        {/* LEFT */}
+
+        {/* LOGO */}
 
         <div
           onClick={() => navigate("/")}
           className="
-            flex-shrink-0
+            flex
+            items-center
             cursor-pointer
             select-none
+            flex-shrink-0
           "
         >
-          <h1
+          <img
+            src={logo}
+            alt="TravelNest"
             className="
-              text-[34px]
-              font-black
-              tracking-[-2px]
-              leading-none
+              h-[88px]
+              w-auto
+              object-contain
             "
-          >
-            <span
-              className="
-                text-slate-900
-                dark:text-white
-              "
-            >
-              Travel
-            </span>
-
-            <span className="text-[#FF385C]">
-              Nest
-            </span>
-          </h1>
+          />
         </div>
 
-        {/* CENTER SEARCH */}
+        {/* SEARCH */}
 
         <div
           className="
@@ -172,9 +228,9 @@ function Navbar() {
             rounded-full
             border
             border-gray-200
-            dark:border-slate-700
+            dark:border-slate-800
             bg-white
-            dark:bg-slate-900
+            dark:bg-[#0F172A]
             shadow-[0_4px_20px_rgba(0,0,0,0.06)]
             px-2
             transition-all
@@ -182,7 +238,6 @@ function Navbar() {
             hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)]
           "
         >
-          {/* SEARCH TEXT */}
 
           <div
             className="
@@ -191,6 +246,7 @@ function Navbar() {
               flex-1
             "
           >
+
             <button
               className="
                 px-5
@@ -244,9 +300,8 @@ function Navbar() {
             >
               Add guests
             </button>
-          </div>
 
-          {/* SEARCH BUTTON */}
+          </div>
 
           <button
             className="
@@ -264,48 +319,19 @@ function Navbar() {
           >
             <FiSearch className="text-white w-4 h-4" />
           </button>
+
         </div>
 
         {/* RIGHT */}
 
         <div
+          ref={menuRef}
           className="
             flex
             items-center
-            gap-2
+            gap-3
           "
-          ref={menuRef}
         >
-          {/* WISHLIST */}
-
-          {userData && (
-            <button
-              onClick={() =>
-                navigate("/wishlist")
-              }
-              className="
-                hidden
-                md:flex
-                w-11
-                h-11
-                rounded-full
-                items-center
-                justify-center
-                hover:bg-gray-100
-                dark:hover:bg-slate-800
-                transition-all
-                duration-300
-              "
-            >
-              <FiHeart
-                className="
-                  w-5
-                  h-5
-                  text-[#FF385C]
-                "
-              />
-            </button>
-          )}
 
           {/* HOST */}
 
@@ -320,9 +346,9 @@ function Navbar() {
               rounded-full
               border
               border-gray-200
-              dark:border-slate-700
+              dark:border-slate-800
               bg-white
-              dark:bg-slate-900
+              dark:bg-[#0F172A]
               text-sm
               font-semibold
               text-gray-900
@@ -362,25 +388,84 @@ function Navbar() {
             />
           </button>
 
-          {/* MENU + AVATAR */}
+          {/* PROFILE */}
+
+          {userData && (
+
+            <button
+              onClick={() =>
+                navigate("/profile")
+              }
+              className="
+                w-11
+                h-11
+                rounded-full
+                overflow-hidden
+                border-2
+                border-white
+                dark:border-slate-800
+                shadow-sm
+                hover:scale-[1.03]
+                transition-all
+                duration-300
+              "
+            >
+
+              {userData.profilePic ? (
+
+                <img
+                  src={userData.profilePic}
+                  alt="profile"
+                  className="
+                    w-full
+                    h-full
+                    object-cover
+                  "
+                />
+
+              ) : (
+
+                <div
+                  className="
+                    w-full
+                    h-full
+                    bg-[#FF385C]
+                    flex
+                    items-center
+                    justify-center
+                    text-sm
+                    font-semibold
+                    text-white
+                  "
+                >
+                  {userData?.name
+                    ?.charAt(0)
+                    ?.toUpperCase()}
+                </div>
+
+              )}
+
+            </button>
+          )}
+
+          {/* MENU */}
 
           <button
             onClick={() =>
               setShowMenu(prev => !prev)
             }
             className="
-              h-12
-              pl-4
-              pr-2
+              w-11
+              h-11
               rounded-full
               border
               border-gray-200
-              dark:border-slate-700
+              dark:border-slate-800
               bg-white
-              dark:bg-slate-900
+              dark:bg-[#0F172A]
               flex
               items-center
-              gap-3
+              justify-center
               hover:shadow-md
               transition-all
               duration-300
@@ -394,74 +479,34 @@ function Navbar() {
                 dark:text-white
               "
             />
-
-            {userData ? (
-              <div
-                className="
-                  w-8
-                  h-8
-                  rounded-full
-                  bg-[#FF385C]
-                  flex
-                  items-center
-                  justify-center
-                  text-sm
-                  font-semibold
-                  text-white
-                "
-              >
-                {userData.name
-                  ?.charAt(0)
-                  ?.toUpperCase()}
-              </div>
-            ) : (
-              <div
-                className="
-                  w-8
-                  h-8
-                  rounded-full
-                  bg-gray-200
-                  dark:bg-slate-700
-                  flex
-                  items-center
-                  justify-center
-                "
-              >
-                <FiUser
-                  className="
-                    w-4
-                    h-4
-                    text-gray-700
-                    dark:text-slate-300
-                  "
-                />
-              </div>
-            )}
           </button>
 
           {/* DROPDOWN */}
 
           {showMenu && (
+
             <div
               className="
                 absolute
                 top-[74px]
-                right-0
+                right-2
                 w-[290px]
                 rounded-[28px]
                 border
                 border-gray-200
-                dark:border-slate-700
+                dark:border-slate-800
                 bg-white
-                dark:bg-slate-900
+                dark:bg-[#111827]
                 shadow-[0_20px_60px_rgba(0,0,0,0.18)]
                 overflow-hidden
                 p-2
               "
             >
-              {/* TOP LINKS */}
+
+              {/* LINKS */}
 
               <div className="flex flex-col gap-1">
+
                 <DropdownItem
                   label="Explore"
                 />
@@ -480,9 +525,13 @@ function Navbar() {
                     <DropdownItem
                       label="Profile"
                       icon={<FiUser />}
+                      onClick={() =>
+                        navigate("/profile")
+                      }
                     />
                   </>
                 )}
+
               </div>
 
               {/* DIVIDER */}
@@ -492,13 +541,14 @@ function Navbar() {
                   my-2
                   border-t
                   border-gray-200
-                  dark:border-slate-700
+                  dark:border-slate-800
                 "
               />
 
               {/* SETTINGS */}
 
               <div className="flex flex-col gap-1">
+
                 <DropdownItem
                   label="Settings"
                   icon={<FiSettings />}
@@ -525,6 +575,7 @@ function Navbar() {
                     transition-all
                   "
                 >
+
                   <div
                     className="
                       flex
@@ -542,7 +593,9 @@ function Navbar() {
                   </div>
 
                   <FiChevronDown className="w-4 h-4" />
+
                 </button>
+
               </div>
 
               {/* DIVIDER */}
@@ -552,14 +605,16 @@ function Navbar() {
                   my-2
                   border-t
                   border-gray-200
-                  dark:border-slate-700
+                  dark:border-slate-800
                 "
               />
 
               {/* AUTH */}
 
               {!userData ? (
+
                 <div className="flex flex-col gap-1">
+
                   <DropdownItem
                     label="Login"
                     onClick={() =>
@@ -573,16 +628,23 @@ function Navbar() {
                       navigate("/signup")
                     }
                   />
+
                 </div>
+
               ) : (
+
                 <DropdownItem
                   label="Logout"
                   icon={<FiLogOut />}
                   danger
+                  onClick={handleLogOut}
                 />
+
               )}
+
             </div>
           )}
+
         </div>
       </div>
     </nav>
@@ -595,7 +657,9 @@ function DropdownItem({
   danger,
   onClick,
 }) {
+
   return (
+
     <button
       onClick={onClick}
       className={`
@@ -620,9 +684,9 @@ function DropdownItem({
       `}
     >
       {icon}
-
       {label}
     </button>
+
   );
 }
 

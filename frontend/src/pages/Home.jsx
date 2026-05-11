@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import Navbar from '../Component/layout/Navbar'
 import Nav from '../Component/Nav'
 import Card from '../Component/Card'
 import { listingDataContext } from '../Context/ListingContext'
@@ -19,7 +20,8 @@ function Home() {
 
   return (
     <div className='min-h-screen bg-white'>
-      <Nav />
+      <Navbar />
+      {/* <Nav /> */}
       <div className='pt-[220px] px-4 md:px-10 pb-10 max-w-[1480px] mx-auto'>
         {newListData.length === 0 ? (
           <div className='flex flex-col items-center justify-center py-20 gap-4'>
