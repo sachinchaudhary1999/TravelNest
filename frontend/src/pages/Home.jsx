@@ -3,6 +3,7 @@ import Nav from '../Component/Nav'
 import Card from '../Component/Card'
 import { listingDataContext } from '../Context/ListingContext'
 import { userDataContext } from '../Context/UserContext'
+import Footer from '../component/layout/Footer'
 
 function Home() {
   const { newListData, getListing, totalPages, currentPage } = useContext(listingDataContext)
@@ -50,6 +51,10 @@ function Home() {
           </>
         )}
       </div>
+
+       {/* FOOTER */}
+
+      <Footer />
     </div>
   )
 }
