@@ -18,7 +18,7 @@ function Footer() {
   return (
     <footer
       className="
-        mt-24
+        mt-12
         bg-white
         dark:bg-slate-950
         border-t
@@ -28,38 +28,39 @@ function Footer() {
     >
       {/* NEWSLETTER CTA */}
 
-      <Container className="pt-24">
+      <Container className="pt-16">
         <div
           className="
             relative
             overflow-hidden
-            rounded-[40px]
+            rounded-[32px]
             bg-gradient-to-r
             from-slate-950
             via-slate-900
             to-slate-950
-            px-8
-            py-10
-            lg:px-14
-            lg:py-14
+            px-6
+            py-5
+            lg:px-12
+            lg:py-8
             flex
             flex-col
             lg:flex-row
             items-center
             justify-between
-            gap-8
+            gap-6
           "
         >
           {/* LEFT */}
 
-          <div>
+          <div className="max-w-xl">
             <h2
               className="
-                text-3xl
-                lg:text-4xl
+                text-2xl
+                lg:text-[32px]
                 font-[800]
                 tracking-[-2px]
                 text-white
+                leading-tight
               "
             >
               Get travel inspiration &
@@ -68,10 +69,10 @@ function Footer() {
 
             <p
               className="
-                mt-3
+                mt-2
                 text-slate-300
-                text-base
-                max-w-xl
+                text-sm
+                lg:text-base
                 leading-relaxed
               "
             >
@@ -92,7 +93,7 @@ function Footer() {
               flex-col
               sm:flex-row
               items-center
-              gap-4
+              gap-3
             "
           >
             <input
@@ -100,17 +101,19 @@ function Footer() {
               placeholder="Enter your email"
               className="
                 w-full
-                sm:w-[340px]
-                h-14
+                sm:w-[320px]
+                h-12
                 rounded-full
                 border
                 border-slate-700
                 bg-slate-900
-                px-6
+                px-5
+                text-sm
                 text-white
                 placeholder:text-slate-400
                 outline-none
                 focus:border-[#FF385C]
+                transition-all
               "
             />
 
@@ -118,12 +121,13 @@ function Footer() {
               className="
                 w-full
                 sm:w-auto
-                h-14
-                px-8
+                h-12
+                px-7
                 rounded-full
                 bg-[#FF385C]
                 hover:bg-[#E31C5F]
                 text-white
+                text-sm
                 font-semibold
                 transition-all
                 duration-300
@@ -146,12 +150,12 @@ function Footer() {
       <Container>
         <div
           className="
-            py-20
+            py-14
             grid
             grid-cols-1
             sm:grid-cols-2
-            lg:grid-cols-5
-            gap-12
+            lg:grid-cols-6
+            gap-10
           "
         >
           {/* BRAND */}
@@ -159,7 +163,7 @@ function Footer() {
           <div className="lg:col-span-2">
             <h2
               className="
-                text-4xl
+                text-3xl
                 font-black
                 tracking-[-2px]
                 text-[#FF385C]
@@ -170,8 +174,8 @@ function Footer() {
 
             <p
               className="
-                mt-5
-                max-w-md
+                mt-4
+                max-w-sm
                 text-sm
                 leading-relaxed
                 text-gray-500
@@ -189,31 +193,18 @@ function Footer() {
 
             <div
               className="
-                mt-8
+                mt-6
                 flex
                 items-center
-                gap-4
+                gap-3
               "
             >
-              <SocialIcon
-                icon={<FaFacebookF />}
-              />
-
-              <SocialIcon
-                icon={<FaInstagram />}
-              />
-
-              <SocialIcon
-                icon={<FaTwitter />}
-              />
-
-              <SocialIcon
-                icon={<FaYoutube />}
-              />
+              <SocialIcon icon={<FaFacebookF />} />
+              <SocialIcon icon={<FaInstagram />} />
+              <SocialIcon icon={<FaTwitter />} />
+              <SocialIcon icon={<FaYoutube />} />
             </div>
           </div>
-
-          {/* SUPPORT */}
 
           <FooterColumn
             title="Support"
@@ -225,8 +216,6 @@ function Footer() {
             ]}
           />
 
-          {/* HOSTING */}
-
           <FooterColumn
             title="Hosting"
             links={[
@@ -237,8 +226,6 @@ function Footer() {
             ]}
           />
 
-          {/* COMPANY */}
-
           <FooterColumn
             title="Company"
             links={[
@@ -248,23 +235,6 @@ function Footer() {
               "Investors",
             ]}
           />
-        </div>
-      </Container>
-
-      {/* LEGAL */}
-
-      <Container>
-        <div
-          className="
-            pb-16
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            lg:grid-cols-5
-            gap-12
-          "
-        >
-          <div className="lg:col-span-2" />
 
           <FooterColumn
             title="Legal"
@@ -290,23 +260,21 @@ function Footer() {
         <Container>
           <div
             className="
-              py-6
+              py-4
               flex
               flex-col
               lg:flex-row
               items-center
               justify-between
-              gap-5
+              gap-4
             "
           >
-            {/* COPYRIGHT */}
-
             <div
               className="
                 flex
                 flex-wrap
                 items-center
-                gap-5
+                gap-4
                 text-sm
                 text-gray-500
                 dark:text-slate-400
@@ -323,17 +291,13 @@ function Footer() {
               <span>Sitemap</span>
             </div>
 
-            {/* RIGHT */}
-
             <div
               className="
                 flex
                 items-center
-                gap-5
+                gap-4
               "
             >
-              {/* LANGUAGE */}
-
               <button
                 className="
                   flex
@@ -346,11 +310,8 @@ function Footer() {
                 "
               >
                 <FiGlobe className="w-4 h-4" />
-
                 English (IN)
               </button>
-
-              {/* CURRENCY */}
 
               <button
                 className="
@@ -370,10 +331,7 @@ function Footer() {
   );
 }
 
-function FooterColumn({
-  title,
-  links,
-}) {
+function FooterColumn({ title, links }) {
   return (
     <div>
       <h3
@@ -391,10 +349,10 @@ function FooterColumn({
 
       <div
         className="
-          mt-6
+          mt-5
           flex
           flex-col
-          gap-4
+          gap-3
         "
       >
         {links.map((link) => (
@@ -422,8 +380,8 @@ function SocialIcon({ icon }) {
   return (
     <button
       className="
-        w-11
-        h-11
+        w-10
+        h-10
         rounded-full
         border
         border-gray-200
