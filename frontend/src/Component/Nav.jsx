@@ -1,47 +1,16 @@
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-
+import React, {useContext,useEffect,useRef,useState,} from "react";
 import { FiSearch } from "react-icons/fi";
-
-import {
-  GiHamburgerMenu,
-  GiFamilyHouse,
-  GiWoodCabin,
-} from "react-icons/gi";
-
+import {GiHamburgerMenu,GiFamilyHouse, GiWoodCabin,} from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
-
-import {
-  MdWhatshot,
-  MdBedroomParent,
-  MdOutlinePool,
-  MdSettings,
-  MdAdminPanelSettings,
-} from "react-icons/md";
-
+import {MdWhatshot,MdBedroomParent,MdOutlinePool,MdSettings, MdAdminPanelSettings,} from "react-icons/md";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
-
-import {
-  IoBedOutline,
-  IoChatbubblesOutline,
-} from "react-icons/io5";
-
+import {IoBedOutline,IoChatbubblesOutline,} from "react-icons/io5";
 import { FaTreeCity, FaHeart } from "react-icons/fa6";
-
 import { BiBuildingHouse } from "react-icons/bi";
-
 import { useNavigate } from "react-router-dom";
-
 import { authDataContext } from "../Context/AuthContext";
-
 import { userDataContext } from "../Context/UserContext";
-
 import { listingDataContext } from "../Context/ListingContext";
-
 import axios from "axios";
 
 const categories = [
