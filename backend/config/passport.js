@@ -5,7 +5,7 @@ import genToken from "./token.js"
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET
-const googleCallbackUrl = process.env.GOOGLE_CALLBACK_URL || "http://localhost:8000/api/auth/google/callback"
+const googleCallbackUrl = process.env.GOOGLE_CALLBACK_URL || "http://localhost:travelnest-backend-4q1w.onrender.com//api/auth/google/callback"
 
 const googleOAuthConfigured = Boolean(googleClientId && googleClientSecret)
 

@@ -8,9 +8,12 @@ import UserContext from './Context/UserContext.jsx'
 import ListingContext from './Context/ListingContext.jsx'
 import BookingContext from './Context/BookingContext.jsx'
 
+import { ThemeProvider } from "./Context/ThemeContext.jsx";
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+     <ThemeProvider>
       <AuthContext>
         <UserContext>
           <ListingContext>
@@ -20,6 +23,7 @@ createRoot(document.getElementById('root')).render(
           </ListingContext>
         </UserContext>
       </AuthContext>
+       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
 )

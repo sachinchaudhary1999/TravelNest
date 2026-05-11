@@ -5,6 +5,8 @@ function AuthContext({ children }) {
  const serverUrl =
     import.meta.env.VITE_SERVER_URL ||
     "https://travelnest-backend-4q1w.onrender.com"
+
+     console.log("Server URL:", serverUrl)
   const [loading, setLoading] = useState(false)
 
   return (
