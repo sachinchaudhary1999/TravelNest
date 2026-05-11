@@ -4,7 +4,8 @@ import Nav from '../Component/Nav'
 import Card from '../Component/Card'
 import { listingDataContext } from '../Context/ListingContext'
 import { userDataContext } from '../Context/UserContext'
-import Footer from '../component/layout/Footer'
+import Footer from '../Component/layout/Footer'
+import HeroSection from '../Component/home/Herosection'
 
 function Home() {
   const { newListData, getListing, totalPages, currentPage } = useContext(listingDataContext)
@@ -22,6 +23,7 @@ function Home() {
     <div className='min-h-screen bg-white'>
       <Navbar />
       {/* <Nav /> */}
+      <HeroSection />
       <div className='pt-[220px] px-4 md:px-10 pb-10 max-w-[1480px] mx-auto'>
         {newListData.length === 0 ? (
           <div className='flex flex-col items-center justify-center py-20 gap-4'>
