@@ -28,7 +28,7 @@ function Home() {
       <HeroSection />
       <FloatingSearch />
       <Categories />
-      <div className='pt-[220px] px-4 md:px-10 pb-10 max-w-[1480px] mx-auto'>
+      <div id="listings-section" className='pt-[160px] px-4 md:px-6 pb-8 max-w-[1400px] mx-auto'>
         {newListData.length === 0 ? (
           <div className='flex flex-col items-center justify-center py-20 gap-4'>
             <p className='text-2xl text-gray-400'>No listings found</p>
@@ -37,8 +37,14 @@ function Home() {
         ) : (
           <>
             <div className='flex flex-wrap gap-6 justify-center'>
-              {newListData.map(listing => (
-                <Card key={listing._id} listing={listing} />
+              {newListData.map((listing, index) => (
+                <div 
+                  key={listing._id}
+                  className="animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
+                >
+                  <Card key={listing._id} listing={listing} index={index} />
+                </div>
               ))}
             </div>
 

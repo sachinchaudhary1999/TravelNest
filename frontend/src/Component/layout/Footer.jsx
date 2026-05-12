@@ -33,16 +33,16 @@ function Footer() {
           Tablet+ : row layout with fixed-width input, heading left-aligned
           Desktop : same as tablet with slightly more horizontal padding
       ──────────────────────────────────────────────────────────────────────── */}
-      <Container className="pt-6 sm:pt-8">
+      <Container className="pt-4 sm:pt-6">
         <div
           className="
             relative overflow-hidden rounded-2xl
             bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950
-            px-4 py-5 sm:px-6 lg:px-10 lg:py-5
+            px-3 py-4 sm:px-5 lg:px-8 lg:py-4
             flex flex-col lg:flex-row
             items-start lg:items-center
             justify-between
-            gap-4
+            gap-3
           "
         >
           {/* LEFT – headline + subtext */}
@@ -70,7 +70,7 @@ function Footer() {
               w-full lg:w-auto
               flex flex-col sm:flex-row
               items-stretch sm:items-center
-              gap-2
+              gap-1.5
             "
           >
             <input
@@ -90,7 +90,7 @@ function Footer() {
             <button
               className="
                 w-full sm:w-auto
-                h-10 px-5 rounded-full
+                h-9 px-4 rounded-full
                 bg-[#FF385C] hover:bg-[#E31C5F]
                 text-white text-sm font-semibold
                 transition-all duration-300
@@ -114,9 +114,9 @@ function Footer() {
       <Container>
         <div
           className="
-            py-6 sm:py-8
+            py-4 sm:py-6
             grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6
-            gap-0 sm:gap-6 lg:gap-6
+            gap-0 sm:gap-4 lg:gap-4
           "
         >
           {/* BRAND – full-width on mobile, spans 2 cols on sm and lg */}
@@ -145,7 +145,7 @@ function Footer() {
             </p>
 
             {/* Social icons */}
-            <div className="mt-4 flex items-center gap-2">
+            <div className="mt-3 flex items-center gap-1.5">
               <SocialIcon icon={<FaFacebookF />} />
               <SocialIcon icon={<FaInstagram />} />
               <SocialIcon icon={<FaTwitter />} />

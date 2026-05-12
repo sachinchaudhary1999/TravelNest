@@ -34,16 +34,16 @@ function Categories() {
   };
 
   return (
-    <div className={`w-full py-2 ${isDarkMode ? "bg-gray-900" : "bg-white"}`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-center gap-6 lg:gap-8 overflow-x-auto">
+    <div className={`w-full py-3 ${isDarkMode ? "bg-gray-900" : "bg-white"}`}>
+      <div className="max-w-7xl mx-auto px-3 lg:px-6">
+        <div className="flex items-center justify-center gap-3 lg:gap-5 overflow-x-auto scrollbar-hide">
           {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => handleCategory(cat.key)}
               className={`
-                flex flex-col items-center gap-2
-                px-4 py-2
+                flex flex-col items-center gap-1.5
+                px-2.5 py-2
                 flex-shrink-0
                 transition-all duration-200
                 ${activeCategory === cat.key
@@ -54,7 +54,7 @@ function Categories() {
                 }
               `}
             >
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 ${
                 activeCategory === cat.key
                   ? "bg-red-100"
                   : isDarkMode

@@ -43,12 +43,12 @@ function HeroSection() {
 
   return (
     <section className={`w-full overflow-hidden ${isDarkMode ? "bg-gray-900" : "bg-white"}`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-18">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <div className="max-w-7xl mx-auto px-4 lg:px-6 py-12 lg:py-16">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
 
-          <div className="flex-1 flex flex-col gap-4 lg:gap-6">
+          <div className="flex-1 flex flex-col gap-2 lg:gap-3">
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-[#FF385C] animate-pulse" />
               <p className={`text-xs font-bold tracking-[2px] uppercase ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
                 DISCOVER. STAY. ENJOY.
@@ -66,7 +66,7 @@ function HeroSection() {
               Anywhere. Anytime.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={handleExplore}
                 className="flex items-center gap-2 h-12 px-6 rounded-full bg-[#FF385C] hover:bg-[#E31C5F] text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300"
@@ -87,7 +87,7 @@ function HeroSection() {
               </button>
             </div>
 
-            <div className="flex flex-wrap items-center gap-8 pt-4">
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               {trustBadges.map((badge) => (
                 <div key={badge.label} className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${

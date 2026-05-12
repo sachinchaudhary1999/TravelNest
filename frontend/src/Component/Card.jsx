@@ -21,6 +21,7 @@ function Card({
   showCancelButton,
   bookingId,
   onCancel,
+  index,
 }) {
   const navigate = useNavigate();
 
@@ -93,10 +94,10 @@ function Card({
 
   return (
     <div
-      className="
+      className={`
         w-[320px]
         max-w-[90vw]
-        rounded-3xl
+        rounded-2xl
         overflow-hidden
         cursor-pointer
         group
@@ -105,13 +106,15 @@ function Card({
         border
         border-gray-100
         dark:border-slate-700
-        shadow-[0_8px_30px_rgba(0,0,0,0.06)]
-        dark:shadow-[0_8px_30px_rgba(0,0,0,0.35)]
+        shadow-[0_4px_20px_rgba(0,0,0,0.08)]
+        dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)]
         hover:-translate-y-1
-        hover:scale-[1.01]
+        hover:scale-[1.02]
         transition-all
         duration-500
-      "
+        animate-fade-in
+        ${index ? 'animation-delay-300' : ''}
+      `}
     >
       {/* IMAGE */}
 
@@ -119,7 +122,7 @@ function Card({
         className="
           relative
           w-full
-          h-64
+          h-56
           overflow-hidden
           bg-gray-100
           dark:bg-slate-700
@@ -323,8 +326,8 @@ function Card({
       >
         {/* TOP */}
 
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex flex-col gap-1 min-w-0">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex items-center gap-1.5 min-w-0">
             <h3
               className="
                 text-[15px]
