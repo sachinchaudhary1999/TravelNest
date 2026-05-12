@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Navbar from '../Component/layout/Navbar'
-import Nav from '../Component/Nav'
-import Card from '../Component/Card'
-import { listingDataContext } from '../Context/ListingContext'
-import { userDataContext } from '../Context/UserContext'
-import Footer from '../Component/layout/Footer'
 import HeroSection from '../Component/home/Herosection'
 import FloatingSearch from '../Component/home/FloatingSearch'
 import Categories from '../Component/home/Categories'
+import TrendingStays from '../Component/home/TrendingStays'
+import { userDataContext } from '../Context/UserContext'
+import Footer from '../Component/layout/Footer'
+import { useTheme } from '../Context/ThemeContext'
 
 function Home() {
-  const { newListData, getListing, totalPages, currentPage } = useContext(listingDataContext)
   const { userLoading } = useContext(userDataContext)
+  const { isDarkMode } = useTheme()
+  const [activeCategory, setActiveCategory] = useState("trending")
 
   if (userLoading) {
     return (
@@ -22,51 +22,22 @@ function Home() {
   }
 
   return (
-    <div className='min-h-screen bg-white'>
-      <Navbar />
-      {/* <Nav /> */}
-      <HeroSection />
-      <FloatingSearch />
-      <Categories />
-      <div id="listings-section" className='pt-[160px] px-4 md:px-6 pb-8 max-w-[1400px] mx-auto'>
-        {newListData.length === 0 ? (
-          <div className='flex flex-col items-center justify-center py-20 gap-4'>
-            <p className='text-2xl text-gray-400'>No listings found</p>
-            <p className='text-gray-400'>Try a different category or search term</p>
-          </div>
-        ) : (
-          <>
-            <div className='flex flex-wrap gap-6 justify-center'>
-              {newListData.map((listing, index) => (
-                <div 
-                  key={listing._id}
-                  className="animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
-                >
-                  <Card key={listing._id} listing={listing} index={index} />
-                </div>
-              ))}
-            </div>
+    <div className={`min-h-screen ${isDarkMode ? "bg-[#0f172a]" : "bg-white"}`}>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className='flex justify-center gap-2 mt-10'>
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
-                  <button
-                    key={p}
-                    className={`w-9 h-9 rounded-full text-sm font-medium transition ${p === currentPage ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                    onClick={() => getListing(p)}
-                  >
-                    {p}
-                  </button>
-                ))}
-              </div>
-            )}
-          </>
-        )}
+      <Navbar />
+
+      <div className="pt-[70px] md:pt-[80px]">
+        <HeroSection />
+        <FloatingSearch />
+        <Categories
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+        />
       </div>
 
-       {/* FOOTER */}
+      <div id="listings-section">
+        <TrendingStays activeCategory={activeCategory} />
+      </div>
 
       <Footer />
     </div>
