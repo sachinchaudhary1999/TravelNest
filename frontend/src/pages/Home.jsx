@@ -4,6 +4,7 @@ import HeroSection from '../Component/home/Herosection'
 import FloatingSearch from '../Component/home/FloatingSearch'
 import Categories from '../Component/home/Categories'
 import TrendingStays from '../Component/home/TrendingStays'
+import LuxuryBanner from '../Component/home/LuxuryBanner'
 import { userDataContext } from '../Context/UserContext'
 import Footer from '../Component/layout/Footer'
 import { useTheme } from '../Context/ThemeContext'
@@ -38,7 +39,7 @@ function Home() {
       <div id="listings-section">
         <TrendingStays activeCategory={activeCategory} />
       </div>
-
+      <LuxuryBanner />
       <Footer />
     </div>
   )
