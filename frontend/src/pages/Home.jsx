@@ -5,6 +5,8 @@ import FloatingSearch from '../Component/home/FloatingSearch'
 import Categories from '../Component/home/Categories'
 import TrendingStays from '../Component/home/TrendingStays'
 import LuxuryBanner from '../Component/home/LuxuryBanner'
+import PopularDestinations from '../Component/home/PopularDestinations'
+// import DestinationPage from './pages/DestinationPage'
 import { userDataContext } from '../Context/UserContext'
 import Footer from '../Component/layout/Footer'
 import { useTheme } from '../Context/ThemeContext'
@@ -40,6 +42,7 @@ function Home() {
         <TrendingStays activeCategory={activeCategory} />
       </div>
       <LuxuryBanner />
+      <PopularDestinations />
       <Footer />
     </div>
   )

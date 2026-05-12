@@ -21,6 +21,7 @@ import Messages from './pages/Messages'
 import Chat from './pages/Chat'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
+import DestinationPage from './pages/DestinationPage'
 
 function PrivateRoute({ children }) {
   const { userData, userLoading } = useContext(userDataContext)
@@ -38,6 +39,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password/:token' element={<ResetPassword />} />
+        <Route path='/destinations/:city' element={<DestinationPage />} />
 
         <Route path='/listingpage1' element={<PrivateRoute><ListingPage1 /></PrivateRoute>} />
         <Route path='/listingpage2' element={<PrivateRoute><ListingPage2 /></PrivateRoute>} />
