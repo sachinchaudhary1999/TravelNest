@@ -31,21 +31,21 @@ function FloatingSearch() {
   };
 
   return (
-    <div className="w-full px-4 md:px-6 lg:px-10 py-4">
+    <div className="w-full px-6 lg:px-8 py-3">
       <div
-        className={`max-w-[900px] mx-auto rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border ${
+        className={`max-w-6xl mx-auto rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border ${
           isDarkMode
-            ? "bg-[#1e293b] border-slate-700"
-            : "bg-white border-gray-100"
+            ? "bg-gray-800 border-gray-700"
+            : "bg-white border-gray-200"
         }`}
       >
-        <div className="flex flex-col md:flex-row items-stretch md:items-center divide-y md:divide-y-0 md:divide-x divide-gray-100 dark:divide-slate-700">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center divide-y lg:divide-y-0 lg:divide-x divide-gray-200 dark:divide-gray-700">
 
           {/* WHERE */}
-          <div className="flex items-center gap-3 px-5 py-4 flex-1 min-w-0">
+          <div className="flex items-center gap-4 px-6 py-2 flex-1 min-w-0">
             <FiMapPin className="w-5 h-5 text-[#FF385C] flex-shrink-0" />
             <div className="flex flex-col flex-1 min-w-0">
-              <label className={`text-[11px] font-bold uppercase tracking-wide mb-1 ${isDarkMode ? "text-slate-400" : "text-gray-400"}`}>
+              <label className={`text-xs font-bold uppercase tracking-wide mb-2 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
                 Where
               </label>
               <input
@@ -54,9 +54,9 @@ function FloatingSearch() {
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className={`text-sm font-medium outline-none bg-transparent placeholder:font-normal w-full ${
+                className={`text-base font-medium outline-none bg-transparent placeholder:font-normal w-full ${
                   isDarkMode
-                    ? "text-white placeholder:text-slate-500"
+                    ? "text-white placeholder:text-gray-500"
                     : "text-gray-900 placeholder:text-gray-400"
                 }`}
               />
@@ -64,17 +64,17 @@ function FloatingSearch() {
           </div>
 
           {/* CHECK IN */}
-          <div className="flex items-center gap-3 px-5 py-4 flex-1 min-w-0">
+          <div className="flex items-center gap-4 px-6 py-2 flex-1 min-w-0">
             <FiCalendar className="w-5 h-5 text-[#FF385C] flex-shrink-0" />
             <div className="flex flex-col flex-1 min-w-0">
-              <label className={`text-[11px] font-bold uppercase tracking-wide mb-1 ${isDarkMode ? "text-slate-400" : "text-gray-400"}`}>
+              <label className={`text-xs font-bold uppercase tracking-wide mb-2 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
                 Check in
               </label>
               <input
                 type="date"
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
-                className={`text-sm font-medium outline-none bg-transparent w-full ${
+                className={`text-base font-medium outline-none bg-transparent w-full ${
                   isDarkMode
                     ? "text-white [color-scheme:dark]"
                     : "text-gray-900"
@@ -84,17 +84,17 @@ function FloatingSearch() {
           </div>
 
           {/* CHECK OUT */}
-          <div className="flex items-center gap-3 px-5 py-4 flex-1 min-w-0">
+          <div className="flex items-center gap-4 px-6 py-2 flex-1 min-w-0">
             <FiCalendar className="w-5 h-5 text-[#FF385C] flex-shrink-0" />
             <div className="flex flex-col flex-1 min-w-0">
-              <label className={`text-[11px] font-bold uppercase tracking-wide mb-1 ${isDarkMode ? "text-slate-400" : "text-gray-400"}`}>
+              <label className={`text-xs font-bold uppercase tracking-wide mb-2 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
                 Check out
               </label>
               <input
                 type="date"
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
-                className={`text-sm font-medium outline-none bg-transparent w-full ${
+                className={`text-base font-medium outline-none bg-transparent w-full ${
                   isDarkMode
                     ? "text-white [color-scheme:dark]"
                     : "text-gray-900"
@@ -104,10 +104,10 @@ function FloatingSearch() {
           </div>
 
           {/* GUESTS */}
-          <div className="flex items-center gap-3 px-5 py-4 flex-1 min-w-0">
+          <div className="flex items-center gap-4 px-6 py-2 flex-1 min-w-0">
             <FiUsers className="w-5 h-5 text-[#FF385C] flex-shrink-0" />
             <div className="flex flex-col flex-1 min-w-0">
-              <label className={`text-[11px] font-bold uppercase tracking-wide mb-1 ${isDarkMode ? "text-slate-400" : "text-gray-400"}`}>
+              <label className={`text-xs font-bold uppercase tracking-wide mb-2 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
                 Guests
               </label>
               <input
@@ -117,9 +117,9 @@ function FloatingSearch() {
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className={`text-sm font-medium outline-none bg-transparent placeholder:font-normal w-full ${
+                className={`text-base font-medium outline-none bg-transparent placeholder:font-normal w-full ${
                   isDarkMode
-                    ? "text-white placeholder:text-slate-500"
+                    ? "text-white placeholder:text-gray-500"
                     : "text-gray-900 placeholder:text-gray-400"
                 }`}
               />
@@ -127,12 +127,12 @@ function FloatingSearch() {
           </div>
 
           {/* SEARCH BUTTON */}
-          <div className="px-4 py-3 flex items-center justify-center">
+          <div className="px-6 py-2 flex items-center justify-center">
             <button
               onClick={handleSearch}
-              className="w-full md:w-auto flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-[#FF385C] hover:bg-[#E31C5F] text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-300 whitespace-nowrap"
+              className="flex items-center justify-center gap-2 h-12 px-8 rounded-xl bg-[#FF385C] hover:bg-[#E31C5F] text-white font-semibold text-base shadow-md hover:shadow-lg transition-all duration-300 whitespace-nowrap"
             >
-              <FiSearch className="w-4 h-4" />
+              <FiSearch className="w-5 h-5" />
               Search
             </button>
           </div>

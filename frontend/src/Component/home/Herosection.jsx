@@ -42,39 +42,34 @@ function HeroSection() {
   };
 
   return (
-    <section className={`w-full overflow-hidden ${isDarkMode ? "bg-[#0f172a]" : "bg-white"}`}>
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-10 lg:py-14">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
+    <section className={`w-full overflow-hidden ${isDarkMode ? "bg-gray-900" : "bg-white"}`}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-18">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
-          {/* ── LEFT CONTENT ────────────────────────────────────────── */}
-          <div className="flex-1 flex flex-col gap-6">
+          <div className="flex-1 flex flex-col gap-4 lg:gap-6">
 
-            {/* Tag line */}
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#FF385C] animate-pulse" />
-              <p className={`text-xs font-bold tracking-[2px] uppercase ${isDarkMode ? "text-slate-400" : "text-gray-500"}`}>
-                Discover. Stay. Enjoy.
+              <p className={`text-xs font-bold tracking-[2px] uppercase ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
+                DISCOVER. STAY. ENJOY.
               </p>
             </div>
 
-            {/* Headline */}
-            <h1 className={`text-4xl md:text-5xl lg:text-[52px] font-[800] leading-[1.1] tracking-[-1.5px] ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+            <h1 className={`text-2xl md:text-3xl lg:text-4xl font-[800] leading-[1.1] tracking-[-2px] ${isDarkMode ? "text-white" : "text-gray-900"}`}>
               Find stays that <br />
               feel like{" "}
               <span className="text-[#FF385C]">home</span>
             </h1>
 
-            {/* Sub-text */}
-            <p className={`text-base leading-relaxed max-w-sm ${isDarkMode ? "text-slate-400" : "text-gray-500"}`}>
+            <p className={`text-base leading-relaxed max-w-md ${isDarkMode ? "text-gray-300" : "text-gray-500"}`}>
               Book villas, cabins, apartments and unique stays across India.
               Anywhere. Anytime.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-4">
               <button
                 onClick={handleExplore}
-                className="flex items-center gap-2 h-12 px-6 rounded-full bg-[#FF385C] hover:bg-[#E31C5F] text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-300"
+                className="flex items-center gap-2 h-12 px-6 rounded-full bg-[#FF385C] hover:bg-[#E31C5F] text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300"
               >
                 Explore Stays
                 <FiArrowRight className="w-4 h-4" />
@@ -82,9 +77,9 @@ function HeroSection() {
 
               <button
                 onClick={handleBecomeHost}
-                className={`flex items-center justify-center h-12 px-6 rounded-full border font-semibold text-sm transition-all duration-300 ${
+                className={`flex items-center justify-center h-12 px-6 rounded-full border font-semibold transition-all duration-300 ${
                   isDarkMode
-                    ? "border-slate-600 bg-transparent text-white hover:border-white"
+                    ? "border-gray-600 bg-gray-800 text-white hover:border-white"
                     : "border-gray-300 bg-white text-gray-900 hover:border-gray-900"
                 }`}
               >
@@ -92,18 +87,19 @@ function HeroSection() {
               </button>
             </div>
 
-            {/* Trust Badges */}
-            <div className="flex flex-wrap items-center gap-6 pt-2">
+            <div className="flex flex-wrap items-center gap-8 pt-4">
               {trustBadges.map((badge) => (
-                <div key={badge.label} className="flex items-center gap-2">
-                  <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 ${isDarkMode ? "bg-slate-800" : "bg-red-50"}`}>
+                <div key={badge.label} className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    isDarkMode ? "bg-gray-800" : "bg-red-50"
+                  }`}>
                     {badge.icon}
                   </div>
                   <div>
-                    <p className={`text-xs font-semibold leading-none ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+                    <p className={`text-sm font-semibold leading-none ${isDarkMode ? "text-white" : "text-gray-900"}`}>
                       {badge.label}
                     </p>
-                    <p className={`text-[11px] mt-0.5 ${isDarkMode ? "text-slate-500" : "text-gray-400"}`}>
+                    <p className={`text-xs mt-0.5 ${isDarkMode ? "text-gray-400" : "text-gray-400"}`}>
                       {badge.sub}
                     </p>
                   </div>
@@ -112,9 +108,8 @@ function HeroSection() {
             </div>
           </div>
 
-          {/* ── RIGHT IMAGE ──────────────────────────────────────────── */}
           <div className="flex-1 w-full relative">
-            <div className="relative rounded-3xl overflow-hidden w-full aspect-[4/3] shadow-2xl">
+            <div className="relative rounded-3xl overflow-hidden w-full aspect-[3/2] shadow-2xl">
               <img
                 src={HERO_IMAGE.src}
                 alt={HERO_IMAGE.alt}
@@ -122,31 +117,35 @@ function HeroSection() {
               />
             </div>
 
-            {/* Rating Badge — top-right */}
-            <div className={`absolute top-4 right-4 rounded-2xl shadow-lg px-4 py-3 flex flex-col items-center min-w-[90px] ${isDarkMode ? "bg-slate-800" : "bg-white"}`}>
+            <div className={`absolute top-3 right-3 rounded-2xl shadow-lg px-3 py-2 flex flex-col items-center min-w-[90px] ${
+              isDarkMode ? "bg-gray-800" : "bg-white"
+            }`}>
               <div className="flex items-center gap-1">
                 <FiStar className="w-4 h-4" style={{ fill: "#FBBF24", color: "#FBBF24" }} />
                 <span className={`text-sm font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>4.8</span>
               </div>
-              <p className={`text-[11px] mt-0.5 ${isDarkMode ? "text-slate-400" : "text-gray-400"}`}>2,450 reviews</p>
+              <p className={`text-[11px] mt-0.5 ${isDarkMode ? "text-gray-400" : "text-gray-400"}`}>2,450 reviews</p>
             </div>
 
-            {/* Happy Guests Badge — bottom-right */}
-            <div className={`absolute bottom-4 right-4 rounded-2xl shadow-lg px-4 py-3 ${isDarkMode ? "bg-slate-800" : "bg-white"}`}>
+            <div className={`absolute bottom-3 right-3 rounded-2xl shadow-lg px-3 py-2 ${
+              isDarkMode ? "bg-gray-800" : "bg-white"
+            }`}>
               <p className={`text-sm font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>10K+</p>
-              <p className={`text-[11px] ${isDarkMode ? "text-slate-400" : "text-gray-400"}`}>Happy Guests</p>
-              <div className="flex items-center mt-2 -space-x-2">
+              <p className={`text-[11px] ${isDarkMode ? "text-gray-400" : "text-gray-400"}`}>Happy Guests</p>
+              <div className="flex items-center mt-1 -space-x-1">
                 {[
-                  "https://i.pravatar.cc/32?img=1",
-                  "https://i.pravatar.cc/32?img=2",
-                  "https://i.pravatar.cc/32?img=3",
-                  "https://i.pravatar.cc/32?img=4",
+                  "https://i.pravatar.cc/28?img=1",
+                  "https://i.pravatar.cc/28?img=2",
+                  "https://i.pravatar.cc/28?img=3",
+                  "https://i.pravatar.cc/28?img=4",
                 ].map((src, i) => (
                   <img
                     key={i}
                     src={src}
                     alt="guest"
-                    className={`w-7 h-7 rounded-full object-cover border-2 ${isDarkMode ? "border-slate-800" : "border-white"}`}
+                    className={`w-6 h-6 rounded-full object-cover border-2 ${
+                      isDarkMode ? "border-gray-800" : "border-white"
+                    }`}
                   />
                 ))}
               </div>

@@ -34,28 +34,35 @@ function Categories() {
   };
 
   return (
-    <div className={`w-full border-b ${isDarkMode ? "bg-[#0f172a] border-slate-800" : "bg-white border-gray-200"}`}>
-      <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-10">
-        <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+    <div className={`w-full py-2 ${isDarkMode ? "bg-gray-900" : "bg-white"}`}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-center gap-6 lg:gap-8 overflow-x-auto">
           {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => handleCategory(cat.key)}
               className={`
-                flex flex-col items-center gap-1.5
-                px-5 py-3
+                flex flex-col items-center gap-2
+                px-4 py-2
                 flex-shrink-0
-                border-b-2
                 transition-all duration-200
                 ${activeCategory === cat.key
-                  ? "border-[#FF385C] text-[#FF385C]"
+                  ? "text-[#FF385C]"
                   : isDarkMode
-                    ? "border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-500"
-                    : "border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300"
+                    ? "text-gray-400 hover:text-gray-200"
+                    : "text-gray-600 hover:text-gray-900"
                 }
               `}
             >
-              {cat.icon}
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 ${
+                activeCategory === cat.key
+                  ? "bg-red-100"
+                  : isDarkMode
+                    ? "bg-gray-800 hover:bg-gray-700"
+                    : "bg-gray-100 hover:bg-gray-200"
+              }`}>
+                {cat.icon}
+              </div>
               <span className="text-xs font-medium whitespace-nowrap">
                 {cat.label}
               </span>
