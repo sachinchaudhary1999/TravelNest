@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FiArrowLeft, FiMapPin } from "react-icons/fi";
-import Navbar from "../Component/layout/Navbar";
+import Navbar from "../Component/layout/NavBar";
 import Footer from "../Component/layout/Footer";
 import Card from "../Component/Card";
 import { authDataContext } from "../Context/AuthContext";
