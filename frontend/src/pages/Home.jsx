@@ -6,6 +6,7 @@ import Categories from '../Component/home/Categories'
 import TrendingStays from '../Component/home/TrendingStays'
 import LuxuryBanner from '../Component/home/LuxuryBanner'
 import PopularDestinations from '../Component/home/PopularDestinations'
+import WhyChooseUs from '../Component/home/WhyChooseUs'
 // import DestinationPage from './pages/DestinationPage'
 import { userDataContext } from '../Context/UserContext'
 import Footer from '../Component/layout/Footer'
@@ -43,6 +44,7 @@ function Home() {
       </div>
       <LuxuryBanner />
       <PopularDestinations />
+      <WhyChooseUs />
       <Footer />
     </div>
   )
