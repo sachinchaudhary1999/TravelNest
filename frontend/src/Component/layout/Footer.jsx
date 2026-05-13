@@ -14,7 +14,7 @@ import {
   FiChevronUp,
 } from "react-icons/fi";
 
-import Container from "./Container";
+import Container from "./container";
 
 function Footer() {
   return (
