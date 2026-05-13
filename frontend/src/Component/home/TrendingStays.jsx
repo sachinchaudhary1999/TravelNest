@@ -5,6 +5,21 @@ import { useTheme } from "../../Context/ThemeContext";
 import { categories } from "./categoryData";
 import Card from "../Card";
 
+// ✅ Skeleton card component
+function SkeletonCard({ isDarkMode }) {
+  return (
+    <div className={`w-full rounded-2xl overflow-hidden ${isDarkMode ? "bg-slate-800" : "bg-white"} border ${isDarkMode ? "border-slate-700" : "border-gray-100"}`}>
+      <div className={`w-full h-[200px] animate-pulse ${isDarkMode ? "bg-slate-700" : "bg-gray-200"}`} />
+      <div className="p-4 flex flex-col gap-3">
+        <div className={`h-3 w-3/4 rounded-full animate-pulse ${isDarkMode ? "bg-slate-700" : "bg-gray-200"}`} />
+        <div className={`h-3 w-1/2 rounded-full animate-pulse ${isDarkMode ? "bg-slate-700" : "bg-gray-200"}`} />
+        <div className={`h-4 w-1/3 rounded-full animate-pulse mt-1 ${isDarkMode ? "bg-slate-700" : "bg-gray-200"}`} />
+      </div>
+    </div>
+  );
+}
+
+
 function TrendingStays({ activeCategory }) {
   const { newListData, getListing, totalPages, currentPage } = useContext(listingDataContext);
   const { isDarkMode } = useTheme();

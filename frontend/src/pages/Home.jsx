@@ -21,13 +21,13 @@ function Home() {
   const { isDarkMode } = useTheme()
   const [activeCategory, setActiveCategory] = useState("trending")
 
-  if (userLoading) {
-    return (
-      <div className='w-screen h-screen flex items-center justify-center'>
-        <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-red-500'></div>
-      </div>
-    )
-  }
+  // if (userLoading) {
+  //   return (
+  //     <div className='w-screen h-screen flex items-center justify-center'>
+  //       <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-red-500'></div>
+  //     </div>
+  //   )
+  // }
 
   return (
     <div className={`min-h-screen ${isDarkMode ? "bg-[#0f172a]" : "bg-white"}`}>
