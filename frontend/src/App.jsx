@@ -41,12 +41,12 @@ function App() {
         <Route path='/reset-password/:token' element={<ResetPassword />} />
         <Route path='/destinations/:city' element={<DestinationPage />} />
 
-        <Route path='/listingpage1' element={<PrivateRoute><ListingPage1 /></PrivateRoute>} />
-        <Route path='/listingpage2' element={<PrivateRoute><ListingPage2 /></PrivateRoute>} />
-        <Route path='/listingpage3' element={<PrivateRoute><ListingPage3 /></PrivateRoute>} />
+        <Route path='/listingpage1' element={<ListingPage1 />} />
+        <Route path='/listingpage2' element={<ListingPage2 />} />
+        <Route path='/listingpage3' element={<ListingPage3 />} />
         <Route path='/mylisting' element={<PrivateRoute><MyListing /></PrivateRoute>} />
         <Route path='/editlisting/:id' element={<PrivateRoute><EditListing /></PrivateRoute>} />
-        <Route path='/viewcard' element={<PrivateRoute><ViewCard /></PrivateRoute>} />
+        <Route path='/viewcard' element={<ViewCard />} />
         <Route path='/mybooking' element={<PrivateRoute><MyBooking /></PrivateRoute>} />
         <Route path='/booked' element={<PrivateRoute><Booked /></PrivateRoute>} />
         <Route path='/profile' element={<PrivateRoute><Profile /></PrivateRoute>} />
