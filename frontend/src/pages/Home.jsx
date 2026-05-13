@@ -51,7 +51,8 @@ function Home() {
       <WhyChooseUs />
       <BecomeAHost />
       <Testiomials />
-      <Footer />
+      <Footer /> 
+      {/* mkjjjn */}
     </div>
   )
 }
