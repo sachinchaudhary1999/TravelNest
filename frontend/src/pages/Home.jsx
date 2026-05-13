@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import Navbar from '../Component/layout/Navbar'
+import Navbar from '../Component/layout/NavBar'
 import HeroSection from '../Component/home/HeroSection'
 import FloatingSearch from '../Component/home/FloatingSearch'
 import Categories from '../Component/home/Categories'
