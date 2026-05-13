@@ -158,4 +158,4 @@ function HeroSection() {
   );
 }
 
-export default Herosection;
+export default HeroSection;
