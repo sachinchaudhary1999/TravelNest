@@ -12,7 +12,6 @@ function ListingContext({ children }) {
   const { serverUrl } = useContext(authDataContext)
   const { getCurrentUser } = useContext(userDataContext)
 
-  // Add listing form state
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [rent, setRent] = useState("")
@@ -26,7 +25,7 @@ function ListingContext({ children }) {
   const [amenities, setAmenities] = useState([])
   const [latitude, setLatitude] = useState("")
   const [longitude, setLongitude] = useState("")
-  const [imageFiles, setImageFiles] = useState([]) // multiple images
+  const [imageFiles, setImageFiles] = useState([])
   const [imagePreviews, setImagePreviews] = useState([])
 
   const [adding, setAdding] = useState(false)
@@ -39,6 +38,9 @@ function ListingContext({ children }) {
   const [searchData, setSearchData] = useState([])
   const [totalPages, setTotalPages] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
+
+  // ✅ ADDED
+  const [listingLoading, setListingLoading] = useState(true)
 
   const resetForm = () => {
     setTitle(""); setDescription(""); setRent(""); setCity("")
@@ -54,7 +56,6 @@ function ListingContext({ children }) {
         toast.error("Please complete all required listing fields")
         return
       }
-
       const formData = new FormData()
       formData.append("title", title)
       formData.append("description", description)
@@ -70,7 +71,6 @@ function ListingContext({ children }) {
       formData.append("longitude", longitude)
       amenities.forEach(a => formData.append("amenities", a))
       imageFiles.forEach(file => formData.append("images", file))
-
       await axios.post(serverUrl + "/api/listing/add", formData, { withCredentials: true })
       resetForm()
       toast.success("Listing added successfully!")
@@ -98,12 +98,12 @@ function ListingContext({ children }) {
   const handleSearch = async (query, filters = {}) => {
     if (!query || query.trim().length < 2) { setSearchData([]); return }
     try {
-      const params = new URLSearchParams({ 
-        query, 
-        minPrice: filters.minPrice || '', 
-        maxPrice: filters.maxPrice || '', 
-        category: filters.category || '', 
-        amenities: filters.amenities?.join(',') || '' 
+      const params = new URLSearchParams({
+        query,
+        minPrice: filters.minPrice || '',
+        maxPrice: filters.maxPrice || '',
+        category: filters.category || '',
+        amenities: filters.amenities?.join(',') || ''
       })
       const result = await axios.get(serverUrl + `/api/listing/search?${params}`)
       setSearchData(result.data)
@@ -112,7 +112,9 @@ function ListingContext({ children }) {
     }
   }
 
+  // ✅ UPDATED — with listingLoading
   const getListing = async (page = 1, filters = {}) => {
+    setListingLoading(true)
     try {
       const params = new URLSearchParams({ page, limit: 20, ...filters })
       const result = await axios.get(serverUrl + `/api/listing/get?${params}`)
@@ -122,11 +124,14 @@ function ListingContext({ children }) {
       setCurrentPage(result.data.page)
     } catch (error) {
       console.log("getListing error:", error)
+    } finally {
+      setListingLoading(false)
     }
   }
 
   useEffect(() => { getListing() }, [adding, updating, deleting])
 
+  // ✅ UPDATED — listingLoading added to value
   const value = {
     title, setTitle, description, setDescription,
     rent, setRent, city, setCity, landmark, setLandmark,
@@ -139,7 +144,7 @@ function ListingContext({ children }) {
     newListData, setNewListData,
     handleViewCard, cardDetails, setCardDetails,
     handleAddListing, handleSearch, searchData, setSearchData,
-    resetForm, totalPages, currentPage,
+    resetForm, totalPages, currentPage, listingLoading,
   }
 
   return (

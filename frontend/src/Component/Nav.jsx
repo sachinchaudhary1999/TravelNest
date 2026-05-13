@@ -2,7 +2,7 @@ import React, {useContext,useEffect,useRef,useState,} from "react";
 import { FiSearch } from "react-icons/fi";
 import {GiHamburgerMenu,GiFamilyHouse, GiWoodCabin,} from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
-import {MdWhatshot,MdBedroomParent,MdOutlinePool,MdSettings, MdAdminPanelSettings,} from "react-icons/md";
+import {MdWhatshot,MdBedroomParent,MdOutlinePool,MdSettings,} from "react-icons/md";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import {IoBedOutline,IoChatbubblesOutline,} from "react-icons/io5";
 import { FaTreeCity, FaHeart } from "react-icons/fa6";
@@ -115,7 +115,7 @@ function Nav() {
 
   const adminUrl =
     import.meta.env.VITE_ADMIN_URL ||
-    "http://localhost:5174";
+    "";
 
   // THEME
 
@@ -514,23 +514,7 @@ function Nav() {
                     }}
                   />
 
-                  {userData.role ===
-                    "admin" && (
-                    <MenuItem
-                      label="Admin Panel"
-                      icon={
-                        <MdAdminPanelSettings />
-                      }
-                      onClick={() => {
-                        window.location.href =
-                          adminUrl;
-
-                        setShowPopup(false);
-
-                        setShowSettings(false);
-                      }}
-                    />
-                  )}
+                  
 
                   {/* SETTINGS */}
 
