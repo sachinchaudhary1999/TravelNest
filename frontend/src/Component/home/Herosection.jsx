@@ -18,7 +18,7 @@ const HERO_IMAGE = {
 };
 
 const trustBadges = [
-  { icon: <FiTag className="w-5 h-5 text-[#FF385C]" />,        label: "Best Price",     sub: "Guarantee" },
+  { icon: <FiTag className="w-5 h-5 text-[#FF385C]" />,        label: "worst Price",     sub: "Guarantee" },
   { icon: <FiHeadphones className="w-5 h-5 text-[#FF385C]" />, label: "24/7 Support",   sub: "Always here" },
   { icon: <FiShield className="w-5 h-5 text-[#FF385C]" />,     label: "Secure Booking", sub: "Trusted by thousands" },
 ];
