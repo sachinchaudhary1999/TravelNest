@@ -9,6 +9,9 @@ import { bookingDataContext } from '../Context/BookingContext'
 import { userDataContext } from '../Context/UserContext'
 import { authDataContext } from '../Context/AuthContext'
 import Star from '../Component/Star'
+import Navbar from '../Component/layout/Navbar'
+import HeroSection from '../Component/home/HeroSection'
+import Footer from '../Component/layout/Footer'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -122,6 +125,7 @@ function ViewCard() {
 
   return (
     <div className='min-h-screen bg-white pb-20'>
+      <Navbar />
       <div className='max-w-5xl mx-auto px-4 pt-6'>
         {/* Back */}
         <button className='w-10 h-10 bg-red-500 rounded-full flex items-center justify-center mb-6' onClick={() => navigate("/")}>
@@ -365,6 +369,7 @@ function ViewCard() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
