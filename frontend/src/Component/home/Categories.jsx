@@ -7,7 +7,18 @@ import { IoBedOutline } from "react-icons/io5";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { listingDataContext } from "../../Context/ListingContext";
 import { useTheme } from "../../Context/ThemeContext";
-import { categories } from "./categoryData";
+
+const categories = [
+  { key: "trending",  label: "Trending"   },
+  { key: "villa",     label: "Villas"     },
+  { key: "farmHouse", label: "Farm House" },
+  { key: "poolHouse", label: "Pool House" },
+  { key: "rooms",     label: "Rooms"      },
+  { key: "flat",      label: "Flats"      },
+  { key: "pg",        label: "PG"         },
+  { key: "cabin",     label: "Cabins"     },
+  { key: "shops",     label: "Shops"      },
+];
 
 const iconMap = {
   trending:  MdWhatshot,
@@ -29,8 +40,7 @@ function Categories({ activeCategory, onCategoryChange }) {
     onCategoryChange(key);
     const filters = key === "trending" ? {} : { category: key };
     getListing(1, filters);
-    const section = document.getElementById("listings-section");
-    if (section) section.scrollIntoView({ behavior: "smooth" });
+    // ✅ NO scroll — listings update in place, no need to scroll
   };
 
   return (
@@ -46,9 +56,12 @@ function Categories({ activeCategory, onCategoryChange }) {
                 onClick={() => handleCategory(cat.key)}
                 className={`flex flex-col items-center justify-center gap-2 flex-1 min-w-[60px] py-3 border-b-2 transition-all duration-200 ${
                   isActive
-                    ? isDarkMode ? "border-white text-white" : "border-gray-900 text-gray-900"
-                    : isDarkMode ? "border-transparent text-slate-500 hover:text-slate-300 hover:border-slate-500"
-                               : "border-transparent text-gray-400 hover:text-gray-600 hover:border-gray-300"
+                    ? isDarkMode
+                      ? "border-white text-white"
+                      : "border-gray-900 text-gray-900"
+                    : isDarkMode
+                      ? "border-transparent text-slate-500 hover:text-slate-300 hover:border-slate-500"
+                      : "border-transparent text-gray-400 hover:text-gray-600 hover:border-gray-300"
                 }`}
               >
                 <Icon className="w-6 h-6" />

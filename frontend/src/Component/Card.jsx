@@ -575,7 +575,7 @@ function Card({ listing, showCancelButton, bookingId, onCancel }) {
   return (
     <div
       onClick={handleClick}
-      className="w-[280px] max-w-[90vw] rounded-2xl overflow-hidden cursor-pointer group bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+      className="w-full rounded-2xl overflow-hidden cursor-pointer group bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
     >
       {/* IMAGE — single cover photo only */}
       <div className="relative w-full h-[200px] overflow-hidden bg-gray-100 dark:bg-slate-700">
