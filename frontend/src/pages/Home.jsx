@@ -7,6 +7,10 @@ import TrendingStays from '../Component/home/TrendingStays'
 import LuxuryBanner from '../Component/home/LuxuryBanner'
 import PopularDestinations from '../Component/home/PopularDestinations'
 import WhyChooseUs from '../Component/home/WhyChooseUs'
+import BecomeAHost from '../Component/home/BecomeAHost'
+import Testiomials from '../Component/home/Testimonials'
+
+
 // import DestinationPage from './pages/DestinationPage'
 import { userDataContext } from '../Context/UserContext'
 import Footer from '../Component/layout/Footer'
@@ -45,6 +49,8 @@ function Home() {
       <LuxuryBanner />
       <PopularDestinations />
       <WhyChooseUs />
+      <BecomeAHost />
+      <Testiomials />
       <Footer />
     </div>
   )
