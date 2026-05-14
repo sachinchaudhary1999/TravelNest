@@ -36,7 +36,6 @@ function Home() {
        <CapitalCities />
       <LuxuryBanner />
       <PopularDestinations />
-      <CapitalCities />
       <WhyChooseUs />
       <BecomeAHost />
       <Testimonials />
