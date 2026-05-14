@@ -14,6 +14,7 @@ import MyListing from './pages/MyListing'
 import EditListing from './pages/EditListing'
 import ViewCard from './pages/ViewCard'
 import MyBooking from './pages/MyBooking'
+import AllListings from './pages/AllListings'
 import Booked from './pages/Booked'
 import Profile from './pages/Profile'
 import Wishlist from './pages/Wishlist'
@@ -41,9 +42,12 @@ function App() {
         <Route path='/reset-password/:token' element={<ResetPassword />} />
         <Route path='/destinations/:city' element={<DestinationPage />} />
 
+
+
         <Route path='/listingpage1' element={<ListingPage1 />} />
         <Route path='/listingpage2' element={<ListingPage2 />} />
         <Route path='/listingpage3' element={<ListingPage3 />} />
+        <Route path='/listings' element={<AllListings />} />
         <Route path='/mylisting' element={<PrivateRoute><MyListing /></PrivateRoute>} />
         <Route path='/editlisting/:id' element={<PrivateRoute><EditListing /></PrivateRoute>} />
         <Route path='/viewcard' element={<ViewCard />} />

@@ -5,6 +5,7 @@ import HeroSection from '../Component/home/HeroSection'
 import FloatingSearch from '../Component/home/FloatingSearch'
 import Categories from '../Component/home/Categories'
 import TrendingStays from '../Component/home/TrendingStays'
+import CapitalCities from '../Component/home/CapitalCities'
 import LuxuryBanner from '../Component/home/LuxuryBanner'
 import PopularDestinations from '../Component/home/PopularDestinations'
 import WhyChooseUs from '../Component/home/WhyChooseUs'
@@ -32,9 +33,10 @@ function Home() {
       <div id="listings-section">
         <TrendingStays activeCategory={activeCategory} />
       </div>
-
+       <CapitalCities />
       <LuxuryBanner />
       <PopularDestinations />
+      <CapitalCities />
       <WhyChooseUs />
       <BecomeAHost />
       <Testimonials />

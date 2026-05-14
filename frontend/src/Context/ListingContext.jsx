@@ -116,7 +116,7 @@ function ListingContext({ children }) {
   const getListing = async (page = 1, filters = {}) => {
     setListingLoading(true)
     try {
-      const params = new URLSearchParams({ page, limit: 20, ...filters })
+      const params = new URLSearchParams({ page, limit: 5, ...filters })
       const result = await axios.get(serverUrl + `/api/listing/get?${params}`)
       setListingData(result.data.listings)
       setNewListData(result.data.listings)
