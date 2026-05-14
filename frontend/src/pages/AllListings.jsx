@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import Navbar from "../Component/layout/Navbar";
+import Navbar from "../Component/layout/NavBar";
 import Footer from "../Component/layout/Footer";
 import Card from "../Component/Card";
 import Categories from "../Component/home/Categories";
