@@ -47,13 +47,13 @@ function ComingSoonCard({ isDarkMode, label }) {
               {label || "Stay"} listing
             </p>
             <p className={`text-sm font-semibold truncate ${isDarkMode ? "text-slate-400" : "text-gray-500"}`}>
-              Be the first to list here
+              {/* More {label || "stay"}s coming soon */}
             </p>
           </div>
         </div>
         <div className="mt-3">
           <span className={`text-sm font-bold ${isDarkMode ? "text-slate-500" : "text-gray-400"}`}>
-            — / night
+            {/* More {label || "stay"}s coming soon */}
           </span>
         </div>
       </div>
