@@ -297,9 +297,9 @@ GOOGLE_CALLBACK_URL=https://your-backend-domain.com/api/auth/google/callback
 
 Example:
 
-```text
+``text
 mongodb+srv://<username>:<password>@cluster0.mongodb.net/TravelNest?retryWrites=true&w=majority
-```
+``
 
 ### Configure Cloudinary
 

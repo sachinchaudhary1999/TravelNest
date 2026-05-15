@@ -11,6 +11,7 @@ import PopularDestinations from '../Component/home/PopularDestinations'
 import WhyChooseUs from '../Component/home/WhyChooseUs'
 import BecomeAHost from '../Component/home/BecomeAHost'
 import Testimonials from '../Component/home/Testimonials'
+import FAQ from '../Component/home/FAQ'
 import { useTheme } from '../Context/ThemeContext'
 
 function Home() {
@@ -39,6 +40,7 @@ function Home() {
       <WhyChooseUs />
       <BecomeAHost />
       <Testimonials />
+      <FAQ />
       <Footer />
     </div>
   )

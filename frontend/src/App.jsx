@@ -34,7 +34,40 @@ function App() {
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} />
-      <Routes>
+
+ 
+
+  <Routes>
+
+    {/* PUBLIC — no login needed */}
+<Route path='/' element={<Home />} />
+<Route path='/login' element={<Login />} />
+<Route path='/signup' element={<SignUp />} />
+<Route path='/forgot-password' element={<ForgotPassword />} />
+<Route path='/reset-password/:token' element={<ResetPassword />} />
+<Route path='/destinations/:city' element={<DestinationPage />} />
+<Route path='/listings' element={<AllListings />} />
+
+{/* ✅ viewcard PUBLIC — anyone can view listing details */}
+<Route path='/viewcard' element={<ViewCard />} />
+
+{/* ✅ listingpage1/2/3 PRIVATE — only logged in users can list */}
+<Route path='/listingpage1' element={<PrivateRoute><ListingPage1 /></PrivateRoute>} />
+<Route path='/listingpage2' element={<PrivateRoute><ListingPage2 /></PrivateRoute>} />
+<Route path='/listingpage3' element={<PrivateRoute><ListingPage3 /></PrivateRoute>} />
+
+{/* PRIVATE — require login */}
+<Route path='/mylisting' element={<PrivateRoute><MyListing /></PrivateRoute>} />
+<Route path='/editlisting/:id' element={<PrivateRoute><EditListing /></PrivateRoute>} />
+<Route path='/mybooking' element={<PrivateRoute><MyBooking /></PrivateRoute>} />
+<Route path='/booked' element={<PrivateRoute><Booked /></PrivateRoute>} />
+<Route path='/profile' element={<PrivateRoute><Profile /></PrivateRoute>} />
+<Route path='/wishlist' element={<PrivateRoute><Wishlist /></PrivateRoute>} />
+<Route path='/messages' element={<PrivateRoute><Messages /></PrivateRoute>} />
+<Route path='/chat/:bookingId' element={<PrivateRoute><Chat /></PrivateRoute>} />  
+
+ </Routes> 
+      {/* <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
@@ -57,7 +90,7 @@ function App() {
         <Route path='/wishlist' element={<PrivateRoute><Wishlist /></PrivateRoute>} />
         <Route path='/messages' element={<PrivateRoute><Messages /></PrivateRoute>} />
         <Route path='/chat/:bookingId' element={<PrivateRoute><Chat /></PrivateRoute>} />
-      </Routes>
+      </Routes> */}
     </>
   )
 }

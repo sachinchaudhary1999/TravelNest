@@ -10,7 +10,8 @@ import { authDataContext } from "../../Context/AuthContext";
 import { listingDataContext } from "../../Context/ListingContext";
 import { useTheme } from "../../Context/ThemeContext";
 import axios from "axios";
-import logo from "../../assets/TravelNest Logo.png";
+// import logo from "../../assets/TravelNest Logo.png";
+import Logo from "../Logo";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -22,6 +23,29 @@ function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+
+
+  //new function adding for search
+const [showSuggestions, setShowSuggestions] = useState(false);
+const [activeIndex, setActiveIndex] = useState(-1);
+
+const searchRef = useRef(null);
+
+const recentSearches = [
+  "Goa",
+  "Manali",
+  "Dubai",
+  "Bali",
+];
+
+const trendingDestinations = [
+  "New York",
+  "Paris",
+  "Tokyo",
+  "Maldives",
+];
+
+
 
   const menuRef = useRef(null);
 
@@ -70,12 +94,215 @@ function Navbar() {
       <div className="max-w-[1440px] mx-auto px-4 md:px-6 lg:px-10 h-[70px] md:h-[80px] flex items-center justify-between gap-3">
 
         {/* LOGO */}
-        <div onClick={() => navigate("/")} className="flex items-center cursor-pointer select-none flex-shrink-0">
-          <img src={logo} alt="TravelNest" className="h-[70px] md:h-[88px] w-auto object-contain" />
-        </div>
+          <div onClick={() => navigate("/")} className="cursor-pointer flex-shrink-0">
+          <Logo />
+           </div>
 
         {/* SEARCH BAR — desktop */}
-        <div className="hidden lg:flex items-center justify-between w-[430px] h-14 rounded-full border border-gray-200 dark:border-slate-800 bg-white dark:bg-[#0F172A] shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-2 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)]">
+
+
+
+
+      {/* SEARCH BAR — desktop */}
+<div
+  ref={searchRef}
+  className="hidden lg:block relative w-[520px]"
+>
+  {/* SEARCH CONTAINER */}
+  <div
+    className="flex items-center justify-between
+    h-14 rounded-full
+    border border-gray-200/70 dark:border-slate-700
+    bg-white/90 dark:bg-slate-900/90
+    backdrop-blur-xl
+    shadow-lg shadow-black/5 dark:shadow-black/20
+    px-2
+    transition-all duration-300
+    hover:shadow-xl
+    focus-within:ring-2 focus-within:ring-[#FF385C]/30"
+  >
+    {/* LEFT */}
+    <div className="flex items-center flex-1 px-3 gap-3">
+      <FiSearch className="text-gray-400 dark:text-slate-500 w-4 h-4" />
+
+      <input
+        type="text"
+        placeholder="Search destinations, stays..."
+        value={searchInput}
+        onFocus={() => setShowSuggestions(true)}
+        onChange={(e) => {
+          setSearchInput(e.target.value);
+          setShowSuggestions(true);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSearch(searchInput);
+            setShowSuggestions(false);
+          }
+        }}
+        className="flex-1 bg-transparent
+        text-sm font-medium
+        text-gray-800 dark:text-white
+        placeholder:text-gray-400 dark:placeholder:text-slate-500
+        outline-none"
+      />
+    </div>
+
+    {/* SEARCH BUTTON */}
+    <button
+      onClick={() => {
+        handleSearch(searchInput);
+        setShowSuggestions(false);
+      }}
+      className="group
+      w-10 h-10 rounded-full
+      bg-[#FF385C]
+      hover:bg-[#E31C5F]
+      active:scale-95
+      flex items-center justify-center
+      transition-all duration-300
+      shadow-md hover:shadow-lg"
+    >
+      <FiSearch className="text-white w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+    </button>
+  </div>
+
+  {/* SUGGESTIONS DROPDOWN */}
+  {showSuggestions && (
+    <div
+      className="absolute top-16 left-0 w-full
+      rounded-[28px]
+      border border-gray-200 dark:border-slate-800
+      bg-white dark:bg-[#111827]
+      shadow-[0_20px_60px_rgba(0,0,0,0.18)]
+      overflow-hidden z-50 p-4
+      animate-in fade-in duration-200"
+    >
+      {/* RECENT SEARCHES */}
+      {!searchInput && (
+        <>
+          <div className="mb-5">
+            <h3
+              className="text-xs font-semibold uppercase
+              tracking-wider text-gray-400 mb-3"
+            >
+              Recent Searches
+            </h3>
+
+            <div className="flex flex-col gap-1">
+              {recentSearches.map((item, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setSearchInput(item);
+                    handleSearch(item);
+                    setShowSuggestions(false);
+                  }}
+                  className="flex items-center gap-3
+                  px-3 py-3 rounded-2xl
+                  hover:bg-gray-100 dark:hover:bg-slate-800
+                  transition-all duration-200 text-left"
+                >
+                  <div
+                    className="w-10 h-10 rounded-xl
+                    bg-gray-100 dark:bg-slate-800
+                    flex items-center justify-center"
+                  >
+                    <FiSearch className="text-gray-500" />
+                  </div>
+
+                  <div>
+                    <p
+                      className="text-sm font-medium
+                      text-gray-800 dark:text-white"
+                    >
+                      {item}
+                    </p>
+
+                    <p className="text-xs text-gray-400">
+                      Previous search
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* TRENDING DESTINATIONS */}
+          <div>
+            <h3
+              className="text-xs font-semibold uppercase
+              tracking-wider text-gray-400 mb-3"
+            >
+              Trending Destinations
+            </h3>
+
+            <div className="grid grid-cols-2 gap-2">
+              {trendingDestinations.map((item, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setSearchInput(item);
+                    handleSearch(item);
+                    setShowSuggestions(false);
+                  }}
+                  className="h-14 rounded-2xl
+                  border border-gray-200 dark:border-slate-700
+                  hover:border-[#FF385C]
+                  hover:bg-pink-50 dark:hover:bg-slate-800
+                  transition-all duration-300
+                  text-sm font-medium
+                  text-gray-700 dark:text-white"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ACTIVE SEARCH */}
+      {searchInput && (
+        <div className="flex flex-col gap-1">
+          <button
+            onClick={() => {
+              handleSearch(searchInput);
+              setShowSuggestions(false);
+            }}
+            className="flex items-center gap-3
+            px-3 py-3 rounded-2xl
+            hover:bg-gray-100 dark:hover:bg-slate-800
+            transition-all"
+          >
+            <div
+              className="w-10 h-10 rounded-xl
+              bg-pink-100 dark:bg-slate-800
+              flex items-center justify-center"
+            >
+              <FiSearch className="text-[#FF385C]" />
+            </div>
+
+            <div className="text-left">
+              <p
+                className="text-sm font-medium
+                text-gray-800 dark:text-white"
+              >
+                Search for "{searchInput}"
+              </p>
+
+              <p className="text-xs text-gray-400">
+                Explore destinations & stays
+              </p>
+            </div>
+          </button>
+        </div>
+      )}
+    </div>
+  )}
+</div>
+
+        {/* <div className="hidden lg:flex items-center justify-between w-[430px] h-14 rounded-full border border-gray-200 dark:border-slate-800 bg-white dark:bg-[#0F172A] shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-2 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)]">
           <div className="flex items-center flex-1 px-2">
             <input
               type="text"
@@ -91,7 +318,7 @@ function Navbar() {
           >
             <FiSearch className="text-white w-4 h-4" />
           </button>
-        </div>
+        </div> */}
 
         {/* RIGHT SIDE */}
         <div ref={menuRef} className="flex items-center gap-2 md:gap-3">
