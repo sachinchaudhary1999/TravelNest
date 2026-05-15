@@ -21,7 +21,7 @@ const REVIEWS = [
   },
   {
     id: 3,
-    name: "Aman Khan",
+    name: "Aman Chaudhary",
     location: "Bangalore",
     avatar: "https://i.pravatar.cc/80?img=13",
     rating: 5,
