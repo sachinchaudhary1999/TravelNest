@@ -430,9 +430,9 @@ function ViewCard() {
 
 
     // ✅ FIXED — anyone can view listing detail, no login required
-  const handleClick = () => {
-    handleViewCard(listing._id);
-  };
+  // const handleClick = () => {
+  //   handleViewCard(listing._id);
+  // };
 
   // ── ALL ORIGINAL LOGIC UNTOUCHED ─────────────────────────────
   useEffect(() => {

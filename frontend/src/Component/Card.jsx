@@ -27,10 +27,14 @@ function Card({ listing, showCancelButton, bookingId, onCancel }) {
   );
 
   // ✅ All original logic untouched
+  // const handleClick = () => {
+  //   if (userData) handleViewCard(listing._id);
+  //   else navigate("/login");
+  // };
+
   const handleClick = () => {
-    if (userData) handleViewCard(listing._id);
-    else navigate("/login");
-  };
+  handleViewCard(listing._id);
+};
 
   const handleWishlist = async e => {
     e.stopPropagation();
