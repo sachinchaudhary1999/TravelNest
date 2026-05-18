@@ -16,7 +16,7 @@ function BecomeAHost() {
 
   const handleClick = () => {
     if (userData) {
-      navigate("/listingpage1");
+      navigate("/createlistings");
     } else {
       navigate("/login");
     }

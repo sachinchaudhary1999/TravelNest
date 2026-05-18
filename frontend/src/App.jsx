@@ -7,9 +7,7 @@ import { userDataContext } from './Context/UserContext'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
-import ListingPage1 from './pages/ListingPage1'
-import ListingPage2 from './pages/ListingPage2'
-import ListingPage3 from './pages/ListingPage3'
+import CreateListing from './pages/CreateListing'
 import MyListing from './pages/MyListing'
 import EditListing from './pages/EditListing'
 import ViewCard from './pages/ViewCard'
@@ -46,9 +44,7 @@ function App() {
         <Route path='/viewcard' element={<ViewCard />} />
 
         {/* PRIVATE — host only */}
-        <Route path='/listingpage1' element={<PrivateRoute><ListingPage1 /></PrivateRoute>} />
-        <Route path='/listingpage2' element={<PrivateRoute><ListingPage2 /></PrivateRoute>} />
-        <Route path='/listingpage3' element={<PrivateRoute><ListingPage3 /></PrivateRoute>} />
+        <Route path='/createlistings' element={<PrivateRoute><CreateListing /></PrivateRoute>} />
 
         {/* PRIVATE — user only */}
         <Route path='/mylisting' element={<PrivateRoute><MyListing /></PrivateRoute>} />

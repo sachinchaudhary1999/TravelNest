@@ -35,7 +35,7 @@ function HeroSection() {
 
   const handleBecomeHost = () => {
     if (userData) {
-      navigate("/listingpage1");
+      navigate("/createlistings");
     } else {
       navigate("/login");
     }

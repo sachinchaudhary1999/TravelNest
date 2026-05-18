@@ -153,7 +153,7 @@ function MyListing() {
               </div>
             </div>
             <button
-              onClick={() => navigate("/listingpage1")}
+              onClick={() => navigate("/createlistings")}
               className="flex items-center gap-2 h-11 px-5 rounded-xl bg-[#FF385C] hover:bg-[#E31C5F] text-white text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex-shrink-0"
             >
               + Add New Listing
@@ -246,7 +246,7 @@ function MyListing() {
               <p className={`text-xl font-semibold ${text}`}>No listings yet</p>
               <p className={`text-sm ${subtext}`}>{emptyMessage}</p>
               <button
-                onClick={() => navigate("/listingpage1")}
+                onClick={() => navigate("/createlistings")}
                 className="mt-2 h-11 px-6 rounded-xl bg-[#FF385C] hover:bg-[#E31C5F] text-white text-sm font-semibold transition-all shadow-md"
               >
                 + List your home

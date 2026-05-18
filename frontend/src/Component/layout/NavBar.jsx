@@ -10,7 +10,7 @@ import { authDataContext } from "../../Context/AuthContext";
 import { listingDataContext } from "../../Context/ListingContext";
 import { useTheme } from "../../Context/ThemeContext";
 import axios from "axios";
-// import logo from "../../assets/TravelNest Logo.png";
+import { toast } from "react-toastify";
 import Logo from "../Logo";
 
 function Navbar() {
@@ -336,7 +336,8 @@ const trendingDestinations = [
 
           {/* BECOME A HOST */}
           <button
-            onClick={() => userData ? navigate("/listingpage1") : navigate("/login")}
+            // onClick={() => userData ? navigate("/listingpage1") : navigate("/login")}
+            onClick={() => userData ? navigate("/createlistings") : navigate("/login")}
             className="hidden md:flex items-center justify-center h-10 px-4 lg:px-5 rounded-full border border-gray-200 dark:border-slate-800 bg-white dark:bg-[#0F172A] text-sm font-semibold text-gray-900 dark:text-white hover:border-[#FF385C] transition-all duration-300 whitespace-nowrap"
           >
             Become a Host
@@ -410,7 +411,7 @@ const trendingDestinations = [
                 <div className="md:hidden">
                   <DropdownItem
                     label="Become a Host"
-                    onClick={() => { userData ? navigate("/listingpage1") : navigate("/login"); setShowMenu(false); }}
+                    onClick={() => { userData ? navigate("/createlistings") : navigate("/login"); setShowMenu(false); }}
                   />
                 </div>
               </div>
@@ -440,7 +441,7 @@ const trendingDestinations = [
                 </div>
               ) : (
                 <>
-                  <DropdownItem label="List your home" onClick={() => { navigate("/listingpage1"); setShowMenu(false); }} />
+                  <DropdownItem label="List your home" onClick={() => { navigate("/createlistings"); setShowMenu(false); }} />
                   <DropdownItem label="Logout" icon={<FiLogOut />} danger onClick={handleLogOut} />
                 </>
               )}
