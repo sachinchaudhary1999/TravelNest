@@ -49,67 +49,11 @@ cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
 ```
 
-### 4. Fill in backend environment values
 
-Open `backend/.env` and set values for all variables below:
 
-```env
-# MongoDB
-MONGO_URI=mongodb+srv://YOUR_USER:YOUR_PASS@cluster.mongodb.net/travelnest
 
-# JWT
-JWT_SECRET=your_super_secret_jwt_key_here
 
-# Cloudinary
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
 
-# App settings
-PORT=8000
-NODE_ENV=development
-CLIENT_URL=http://localhost:5173
-
-# Email (Nodemailer)
-EMAIL_USER=your_gmail@gmail.com
-EMAIL_PASS=your_gmail_app_password
-
-# Admin
-ADMIN_EMAIL=admin@travelnest.com
-ADMIN_SECRET=your_admin_secret_to_register
-
-# Google OAuth (optional)
-GOOGLE_CLIENT_ID=your_google_client_id_here
-GOOGLE_CLIENT_SECRET=your_google_client_secret_here
-GOOGLE_CALLBACK_URL=http://localhost:8000/api/auth/google/callback
-```
-
-#### Required backend variables
-- `MONGO_URI` — MongoDB connection string
-- `JWT_SECRET` — JWT signing secret
-- `CLOUDINARY_CLOUD_NAME` — Cloudinary account name
-- `CLOUDINARY_API_KEY` — Cloudinary API key
-- `CLOUDINARY_API_SECRET` — Cloudinary API secret
-- `PORT` — backend port (default `8000`)
-- `NODE_ENV` — `development` or `production`
-- `CLIENT_URL` — frontend URL for redirects and cookies
-- `EMAIL_USER` — SMTP email account for password reset
-- `EMAIL_PASS` — SMTP email password/app password
-- `ADMIN_EMAIL` — default admin email used in admin creation example
-- `ADMIN_SECRET` — admin registration secret
-
-#### Optional backend variables
-- `GOOGLE_CLIENT_ID` — Google OAuth client ID
-- `GOOGLE_CLIENT_SECRET` — Google OAuth client secret
-- `GOOGLE_CALLBACK_URL` — Google callback route
-
-### 5. Fill in frontend environment values
-
-Open `frontend/.env` and set:
-
-```env
-VITE_SERVER_URL=http://localhost:8000
-```
 
 This variable is optional. If it is not set, the frontend defaults to `http://localhost:8000`.
 
@@ -136,49 +80,7 @@ npm run dev
 - Frontend: `http://localhost:5173`
 - Backend API: `http://localhost:8000`
 
-## Create the first admin user
 
-After the backend is running, send a request to create the first admin:
-
-```http
-POST http://localhost:8000/api/admin/create
-Content-Type: application/json
-```
-
-Request body:
-
-```json
-{
-  "name": "Admin",
-  "email": "admin@example.com",
-  "password": "yourpassword",
-  "adminSecret": "your_admin_secret_to_register"
-}
-```
-
-## Full environment variable list
-
-### Backend (`backend/.env`)
-- `MONGO_URI`
-- `JWT_SECRET`
-- `CLOUDINARY_CLOUD_NAME`
-- `CLOUDINARY_API_KEY`
-- `CLOUDINARY_API_SECRET`
-- `PORT`
-- `NODE_ENV`
-- `CLIENT_URL`
-- `EMAIL_USER`
-- `EMAIL_PASS`
-- `ADMIN_EMAIL`
-- `ADMIN_SECRET`
-- `GOOGLE_CLIENT_ID` (optional)
-- `GOOGLE_CLIENT_SECRET` (optional)
-- `GOOGLE_CALLBACK_URL` (optional)
-
-### Frontend (`frontend/.env`)
-- `VITE_SERVER_URL`
-
-## Project structure
 
 ```
 TravelNest_Complete/
@@ -262,23 +164,7 @@ If your host uses a different default port, make sure `PORT` is set accordingly.
 
 The backend requires the same variables as local development, but with production values.
 
-```env
-MONGO_URI=your_production_mongodb_uri
-JWT_SECRET=your_production_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-PORT=your_port_or_host_default
-NODE_ENV=production
-CLIENT_URL=https://your-frontend-domain.com
-EMAIL_USER=your_production_email
-EMAIL_PASS=your_production_email_password
-ADMIN_EMAIL=admin@your-domain.com
-ADMIN_SECRET=your_production_admin_secret
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-GOOGLE_CALLBACK_URL=https://your-backend-domain.com/api/auth/google/callback
-```
+
 
 #### Important production notes
 
