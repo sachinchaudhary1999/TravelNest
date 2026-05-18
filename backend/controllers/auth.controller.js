@@ -5,17 +5,42 @@ import crypto from "crypto"
 import { sendPasswordResetEmail } from "../config/email.js"
 import uploadOnCloudinary from "../config/cloudinary.js"
 
+// const cookieOptions = {
+//   httpOnly: true,
+//   secure: true,
+//   sameSite: "none",
+//   path: "/",
+//   maxAge: 7 * 24 * 60 * 60 * 1000,
+// }
+
+// const setCookie = (res, token) => {
+//   res.cookie("token", token, cookieOptions)
+// }
+
 const cookieOptions = {
   httpOnly: true,
-  secure: true,
-  sameSite: "none",
+
+  secure:
+    process.env.NODE_ENV ===
+    "production",
+
+  sameSite:
+    process.env.NODE_ENV ===
+    "production"
+      ? "none"
+      : "lax",
+
   path: "/",
-  maxAge: 7 * 24 * 60 * 60 * 1000,
 }
 
 const setCookie = (res, token) => {
-  res.cookie("token", token, cookieOptions)
+  res.cookie(
+    "token",
+    token,
+    cookieOptions
+  )
 }
+
 
 const ensureEnvAdmin = async () => {
   const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase()?.trim()
