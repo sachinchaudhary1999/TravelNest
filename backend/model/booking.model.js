@@ -12,7 +12,7 @@ const bookingSchema = new mongoose.Schema({
   status: { type: String, enum: ["booked", "cancelled", "completed"], default: "booked" },
   // Payment
   paymentStatus: { type: String, enum: ["pending", "paid", "refunded"], default: "pending" },
-  paymentId: { type: String, default: "" },
+  paymentId: { type: String, default: null},
 }, { timestamps: true })
 
 const Booking = mongoose.model("Booking", bookingSchema)
