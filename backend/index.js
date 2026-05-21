@@ -15,6 +15,7 @@ import adminRouter from "./routes/admin.route.js"
 import messageRouter from "./routes/message.route.js"
 import wishlistRouter from "./routes/wishlist.route.js"
 import reportRouter from "./routes/report.route.js"
+import paymentRouter from "./routes/payment.js"
 
 const port = process.env.PORT || 8000
 const app = express()
@@ -53,7 +54,7 @@ app.use("/api/admin", adminRouter)
 app.use("/api/message", messageRouter)
 app.use("/api/wishlist", wishlistRouter)
 app.use("/api/report", reportRouter)
-
+app.use("/api/payment", paymentRouter)
 // Health check
 app.get("/", (req, res) => res.json({ message: "TravelNest API running" }))
 

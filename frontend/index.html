@@ -26,10 +26,12 @@
 
     <title>TravelNest</title>
 
+    <!-- ✅ Razorpay Checkout -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <script>
       (() => {
         const theme = localStorage.getItem("theme");
-
         if (theme === "dark") {
           document.documentElement.classList.add("dark");
         }
