@@ -1,4 +1,4 @@
-import Booking from "../model/booking.model.js"
+                import Booking from "../model/booking.model.js"
 import Listing from "../model/listing.model.js"
 import User from "../model/user.model.js"
 import { sendBookingConfirmation } from "../config/email.js"
