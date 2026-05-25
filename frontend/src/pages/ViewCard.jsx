@@ -11,6 +11,7 @@ import { userDataContext } from '../Context/UserContext'
 import { authDataContext } from '../Context/AuthContext'
 import { useTheme } from '../Context/ThemeContext'
 import Star from '../Component/Star'
+import Map from '../Component/Map'
 import Navbar from '../Component/layout/NavBar'
 import Footer from '../Component/layout/Footer'
 import axios from 'axios'
@@ -340,24 +341,37 @@ function ViewCard() {
                 </div>
               )}
 
-              {/* LOCATION
-              {listing.latitude && listing.longitude && listing.latitude !== 0 && (
-                <div className={`pb-6 mb-6 border-b ${border}`}>
-                  <h2 className={`text-lg font-bold ${text} mb-2`}>Location</h2>
-                  <p className={`text-sm ${subtext} mb-3`}>
-                    {listing.address || `${listing.landMark}, ${listing.city}`}
-                  </p>
-                  
-                    href={`https://maps.google.com/?q=${listing.latitude},${listing.longitude}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className='inline-flex items-center gap-2 text-sm font-semibold text-[#FF385C] hover:text-[#E31C5F] transition-colors'
-                  >
-                    <FiMapPin className='w-4 h-4' />
-                    View on Google Maps →
-                  </a>
-                </div>
-              )} */}
+              {/* LOCATION */}
+
+              {/* LOCATION */}
+{listing.latitude && listing.longitude && listing.latitude !== 0 && (
+  <div className={`pb-6 mb-6 border-b ${border}`}>
+    <h2 className={`text-lg font-bold ${text} mb-2`}>Location</h2>
+    <p className={`text-sm ${subtext} mb-4`}>
+      {listing.address || `${listing.landMark}, ${listing.city}`}
+    </p>
+
+    {/* INTERACTIVE MAP */}
+    <Map
+      latitude={listing.latitude}
+      longitude={listing.longitude}
+      title={listing.title}
+      city={listing.city}
+      isDarkMode={isDarkMode}
+    />
+
+    {/* GOOGLE MAPS LINK */}
+    <a
+      href={`https://maps.google.com/?q=${listing.latitude},${listing.longitude}`}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center gap-2 text-sm font-semibold text-[#FF385C] hover:text-[#E31C5F] transition-colors mt-3"
+    >
+      <FiMapPin className="w-4 h-4" />
+      View on Google Maps →
+    </a>
+  </div>
+)}
 
               {/* REVIEWS */}
               <div>
